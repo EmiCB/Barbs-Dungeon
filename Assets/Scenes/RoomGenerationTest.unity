@@ -186,7 +186,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 30
+  orthographic size: 45
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -229,9 +229,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41f7a95d5784744b91cbf9756450ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  room: {fileID: 6633109257103850224, guid: 1a5f4c158c17f3a4d8ca0fa61528e16b, type: 3}
+  room: {fileID: 8483208519510779702, guid: 9ae81a4a22bdd354f8a71942b0cf99da, type: 3}
   amountOfRoom: 200
-  startColor: {x: 1, y: 0, z: 0, w: 0}
+  startColor: {x: 1, y: 0, z: 0, w: 1}
   endColor: {x: 0, y: 0, z: 1, w: 1}
 --- !u!114 &1116542634
 MonoBehaviour:

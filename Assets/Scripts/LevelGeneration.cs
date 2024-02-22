@@ -23,10 +23,10 @@ public class LevelGeneration : MonoBehaviour
     {
         for (int i = 0; i < amountOfRoom; i++) 
         {
-            GameObject temp = Instantiate(room, new Vector3((int) Random.Range(-5.0f, 5.0f), (int) Random.Range(-5.0f, 5.0f), 0), Quaternion.identity);
-            temp.GetComponent<SpriteRenderer>().color = Vector4.Lerp(startColor, endColor, i/(float)amountOfRoom);
+            GameObject temp = Instantiate(room, new Vector3((int) Random.Range(-4.0f, 4.0f), (int) Random.Range(-4.0f, 4.0f), 0), Quaternion.identity);
+            temp.GetComponentInChildren<SpriteRenderer>().color = Vector4.Lerp(startColor, endColor, i/(float)amountOfRoom);
 
-            temp.transform.localScale = new Vector3((int) Mathf.Ceil(Random.Range(1.0f, 10.0f)), (int) Mathf.Ceil(Random.Range(1.0f, 10.0f)), 1);
+            temp.transform.localScale = new Vector3((int) Mathf.Ceil(Random.Range(0.0f, 10.0f)), (int) Mathf.Ceil(Random.Range(0.0f, 10.0f)), 1);
             rooms.Add(temp);
             sizes.Add((int) temp.transform.localScale.x * (int) temp.transform.localScale.y);
         }
@@ -54,19 +54,18 @@ public class LevelGeneration : MonoBehaviour
                 counter2++;
                 sum = sum / (counter + 1);
                 rooms[i].transform.position -= (sum - rooms[i].transform.position).normalized;
-                rooms[i].transform.position = new Vector3(Mathf.Round(rooms[i].transform.position.x), Mathf.Round(rooms[i].transform.position.y), rooms[i].transform.position.z);
+                //rooms[i].transform.position = new Vector3(Mathf.Round(rooms[i].transform.position.x), Mathf.Round(rooms[i].transform.position.y), rooms[i].transform.position.z);
             }
-            Debug.Log(counter2);
+            //Debug.Log(counter2);
             if (counter2 == 0) hasFinished = true;
         } else {
-            Debug.Log("test");
             sizes.Sort();
             for (int i = 0; i < amountOfRoom; ++i) {
                 Vector3 roomScale = rooms[i].transform.localScale;
                 if (roomScale.x * roomScale.y >= sizes[amountOfRoom - 11]) {
-                        rooms[i].GetComponent<SpriteRenderer>().color = new Vector4(0.0f, 1.0f, 0.0f, 1.0f);
+                        rooms[i].GetComponentInChildren<SpriteRenderer>().color = new Vector4(0.0f, 1.0f, 0.0f, 1.0f);
                 } else {
-                        rooms[i].GetComponent<SpriteRenderer>().color = new Vector4(0.7f, 0.7f, 0.7f, 1.0f);
+                        rooms[i].GetComponentInChildren<SpriteRenderer>().color = new Vector4(0.7f, 0.7f, 0.7f, 1.0f);
                 }
             }
         }
