@@ -1,5 +1,6 @@
 /// <summary>
 /// System to manage common player resources (e.g. helath, mana, stamina).
+/// Note: can possibly also be used for tracking exp, currency, skill points, etc.
 /// </summary>
 public class ResourceSystem {
     private int max;

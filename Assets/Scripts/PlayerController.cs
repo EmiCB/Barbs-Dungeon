@@ -7,9 +7,14 @@ public class PlayerController : MonoBehaviour {
     private Vector2 movementInput = Vector2.zero;
 
     // Health system
-    private int maxHealth = 10; // TODO: split out into a character stats ScriptableObject
+    private int maxHealth = 10;     // TODO: split out into a character stats ScriptableObject
     private ResourceSystem healthSystem;
     public ResourceBar healthBar;
+
+    // Mana system
+    private int maxMana = 10;       // TODO: split out into a character stats ScriptableObject
+    private ResourceSystem manaSystem;
+    public ResourceBar manaBar;
 
     // Component references
     private Rigidbody2D rb;
@@ -20,6 +25,7 @@ public class PlayerController : MonoBehaviour {
 
         // initialize stats
         healthSystem = new ResourceSystem(maxHealth, healthBar);
+        manaSystem = new ResourceSystem(maxMana, manaBar);
     }
 
     // Run physics
@@ -44,5 +50,13 @@ public class PlayerController : MonoBehaviour {
 
     void OnSkill2() {
         healthSystem.AddAmount(1);
+    }
+
+    void OnSkill3() {
+        manaSystem.RemoveAmount(1);
+    }
+
+    void OnSkill4() {
+        manaSystem.AddAmount(1);
     }
 }
