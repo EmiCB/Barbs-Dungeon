@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour {
 
     // Health system
     private int maxHealth = 10; // TODO: split out into a character stats ScriptableObject
-    private HealthSystem healthSystem;
-    public HealthBar healthBar;
+    private ResourceSystem healthSystem;
+    public ResourceBar healthBar;
 
     // Component references
     private Rigidbody2D rb;
@@ -19,13 +19,15 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
 
         // initialize stats
-        healthSystem = new HealthSystem(maxHealth, healthBar);
+        healthSystem = new ResourceSystem(maxHealth, healthBar);
     }
 
     // Run physics
     private void FixedUpdate() {
         rb.velocity = movementInput * moveSpeed;
     }
+
+    // --- INPUT SYSTEM ---
 
     /// <summary>
     /// Responds to OnMove event from UnityInputSystem.
@@ -37,10 +39,10 @@ public class PlayerController : MonoBehaviour {
 
     // Using skill buttons as temp tests for health system
     void OnSkill1() {
-        healthSystem.ApplyDamage(1);
+        healthSystem.RemoveAmount(1);
     }
 
     void OnSkill2() {
-        healthSystem.ApplyHeal(1);
+        healthSystem.AddAmount(1);
     }
 }
