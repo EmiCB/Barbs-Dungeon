@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "PointerPosition",
+                    "type": "Value",
+                    "id": "950c442e-9f91-44c1-8c17-aeb91f08936a",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Skill1",
                     "type": "Button",
                     "id": "ff669b65-58f4-4788-8327-0ffdd5d3dd5b",
@@ -148,6 +157,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Skill4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cf16de0d-60ca-4d23-8e07-7a22acba3a35",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PointerPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,10 +1,17 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
     // Movement variables
-    private float moveSpeed = 10.0f;
+    private float maxMoveSpeed = 10.0f;
+    private float currentMoveSpeed = 0.0f;
+    private float acceleration = 5.0f;
+    private float deceleration = 5.0f;
     private Vector2 movementInput = Vector2.zero;
+    private Vector2 movementInputOld = Vector2.zero;
+    private Vector2 pointerInput = Vector2.zero;
+    private bool facingRight = true;
 
     // Health system
     private int maxHealth = 10;     // TODO: split out into a character stats ScriptableObject
@@ -30,7 +37,26 @@ public class PlayerController : MonoBehaviour {
 
     // Run physics
     private void FixedUpdate() {
-        rb.velocity = movementInput * moveSpeed;
+        // make smoother movement
+        if (movementInput.magnitude > 0 && currentMoveSpeed >= 0) {
+            movementInputOld = movementInput;
+            currentMoveSpeed += acceleration * maxMoveSpeed * Time.deltaTime;
+        } else {
+            currentMoveSpeed -= deceleration * maxMoveSpeed * Time.deltaTime;
+        }
+        currentMoveSpeed = Mathf.Clamp(currentMoveSpeed, 0, maxMoveSpeed);
+        rb.velocity = movementInputOld * currentMoveSpeed;
+
+        // face mouse cursor
+        if (pointerInput.x < transform.position.x && facingRight) {
+            facingRight = !facingRight;
+            transform.Rotate(0f, 180f, 0f);
+        }
+        else if (pointerInput.x > transform.position.x && !facingRight) {
+            facingRight = !facingRight;
+            transform.Rotate(0f, 180f, 0f);
+        }
+
     }
 
     // --- INPUT SYSTEM ---
@@ -41,6 +67,10 @@ public class PlayerController : MonoBehaviour {
     /// <param name="value">The action value that contains the Vector2 X/Y input from the player's input device.</param>
     void OnMove(InputValue value) {
         movementInput = value.Get<Vector2>();
+    }
+
+    void OnPointerPosition(InputValue value) {
+        pointerInput = Camera.main.ScreenToWorldPoint(value.Get<Vector2>());
     }
 
     // Using skill buttons as temp tests for health system
