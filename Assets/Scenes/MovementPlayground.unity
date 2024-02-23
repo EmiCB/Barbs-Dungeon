@@ -494,6 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91edd8ef67ec047df971dd036ba2be16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointerPosition: {fileID: 705881491262939121, guid: 7d231099b1c734a3196fd5915a29f9f5, type: 3}
   healthBar: {fileID: 1229292865}
   manaBar: {fileID: 597710442}
 --- !u!70 &392854572

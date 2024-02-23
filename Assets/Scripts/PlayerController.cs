@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour {
     private float deceleration = 5.0f;
     private Vector2 movementInput = Vector2.zero;
     private Vector2 movementInputOld = Vector2.zero;
+    [SerializeField]
+    private InputActionReference pointerPosition;
     private Vector2 pointerInput = Vector2.zero;
     private bool facingRight = true;
 
@@ -35,13 +37,15 @@ public class PlayerController : MonoBehaviour {
 
         weaponParent = GetComponentInChildren<WeaponParentController>();
 
-        // initialize stats
+        // Initialize stats
         healthSystem = new ResourceSystem(maxHealth, healthBar);
         manaSystem = new ResourceSystem(maxMana, manaBar);
     }
 
     // Main game loop
     private void Update() {
+        pointerInput = GetPointerInput();
+
         // Player face mouse cursor
         if (pointerInput.x < transform.position.x && facingRight) {
             facingRight = !facingRight;
@@ -69,6 +73,12 @@ public class PlayerController : MonoBehaviour {
         rb.velocity = movementInputOld * currentMoveSpeed;
     }
 
+    private Vector2 GetPointerInput() {
+        Vector3 mousePosition = pointerPosition.action.ReadValue<Vector2>();
+        mousePosition.z = Camera.main.nearClipPlane;
+        return Camera.main.ScreenToWorldPoint(mousePosition);
+    }
+
     // --- INPUT SYSTEM ---
 
     /// <summary>
@@ -80,7 +90,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void OnPointerPosition(InputValue value) {
-        pointerInput = Camera.main.ScreenToWorldPoint(value.Get<Vector2>());
+        //pointerInput = Camera.main.ScreenToWorldPoint(value.Get<Vector2>());
     }
 
     // Using skill buttons as temp tests for health system
