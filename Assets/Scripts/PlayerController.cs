@@ -89,8 +89,8 @@ public class PlayerController : MonoBehaviour {
         movementInput = value.Get<Vector2>();
     }
 
-    void OnPointerPosition(InputValue value) {
-        //pointerInput = Camera.main.ScreenToWorldPoint(value.Get<Vector2>());
+    void OnAttack() {
+        weaponParent.Attack();
     }
 
     // Using skill buttons as temp tests for health system

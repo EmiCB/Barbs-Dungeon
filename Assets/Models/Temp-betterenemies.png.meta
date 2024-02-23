@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 928875e1c0f4a4a6ba67de75a646955a
+guid: 821e17089c78f40309af0538f7fbf050
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 15
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -71,8 +71,8 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureFormat: 4
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,211 +97,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TEMP-pixswords_0
+      name: Temp-betterenemies_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
-        width: 16
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        y: 20
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae860e373a88b48d3b8fe2999cea6516
-      internalID: 2129475503
+      spriteID: 6747bd2c30afa4653a632981a8cf6e4f
+      internalID: 1202631992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TEMP-pixswords_1
+      name: Temp-betterenemies_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 32
-        width: 16
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 20
+        y: 20
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5be0ec058ec8744dca070509ae97f14f
-      internalID: -342297601
+      spriteID: 5d5a66cdbff8948cc814d10b273dbbeb
+      internalID: 1982024228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TEMP-pixswords_2
+      name: Temp-betterenemies_2
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 16
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.16978788}
+        x: 40
+        y: 20
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1f08dfc69e6b408f800e0d3897ac695
-      internalID: 1290150401
+      spriteID: 9f148395f47a8403aac7ab381fba0f87
+      internalID: 1488367065
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TEMP-pixswords_3
+      name: Temp-betterenemies_3
       rect:
         serializedVersion: 2
-        x: 48
-        y: 32
-        width: 16
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 60
+        y: 20
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7383b6fbfab3a4e939dadd7cc7acb973
-      internalID: 1285848743
+      spriteID: 7663576c027d2416bae7d8dcf1701364
+      internalID: 928485755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TEMP-pixswords_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 16
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 84571b5fc372641c58bed9fb1b8b7a7b
-      internalID: -167884740
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TEMP-pixswords_5
+      name: Temp-betterenemies_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46e4d847bee0644749e71bacceb2c0c6
-      internalID: -1096585769
+      spriteID: 79c380efbacc04a2a888e85bacb0a0c1
+      internalID: 1808888904
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TEMP-pixswords_6
+      name: Temp-betterenemies_5
       rect:
         serializedVersion: 2
-        x: 16
+        x: 20
         y: 0
-        width: 16
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ce5111c8e2224534b063503139fd47d
-      internalID: -61833193
+      spriteID: 16539c217e2a846d39ed92fa6fe72f28
+      internalID: 1007258411
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TEMP-pixswords_7
+      name: Temp-betterenemies_6
       rect:
         serializedVersion: 2
-        x: 32
+        x: 40
         y: 0
-        width: 16
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 942cce14e8bef48878ed4eaeb466c9f1
-      internalID: -608031917
+      spriteID: 7d31050cf2b7b4e83929416f5f8b6af9
+      internalID: 1819714766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TEMP-pixswords_8
+      name: Temp-betterenemies_7
       rect:
         serializedVersion: 2
-        x: 48
+        x: 60
         y: 0
-        width: 16
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f2a7e24b0d7340c7831d763f7f549d4
-      internalID: 841607631
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TEMP-pixswords_9
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d5ce270b8796940afa50f68d9eddd819
-      internalID: -1169700333
+      spriteID: d2492f9f4d1ff4e16a7ac4919ce2d836
+      internalID: -1020169062
       vertices: []
       indices: 
       edges: []
@@ -317,16 +275,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TEMP-pixswords_0: 2129475503
-      TEMP-pixswords_1: -342297601
-      TEMP-pixswords_2: 1290150401
-      TEMP-pixswords_3: 1285848743
-      TEMP-pixswords_4: -167884740
-      TEMP-pixswords_5: -1096585769
-      TEMP-pixswords_6: -61833193
-      TEMP-pixswords_7: -608031917
-      TEMP-pixswords_8: 841607631
-      TEMP-pixswords_9: -1169700333
+      Temp-betterenemies_0: 1202631992
+      Temp-betterenemies_1: 1982024228
+      Temp-betterenemies_2: 1488367065
+      Temp-betterenemies_3: 928485755
+      Temp-betterenemies_4: 1808888904
+      Temp-betterenemies_5: 1007258411
+      Temp-betterenemies_6: 1819714766
+      Temp-betterenemies_7: -1020169062
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
