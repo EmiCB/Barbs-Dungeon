@@ -26,28 +26,23 @@ public class PlayerController : MonoBehaviour {
     // Component references
     private Rigidbody2D rb;
 
+    // Combat references
+    private WeaponParentController weaponParent;
+
     // Initialize player
     void Start() {
         rb = GetComponent<Rigidbody2D>();
+
+        weaponParent = GetComponentInChildren<WeaponParentController>();
 
         // initialize stats
         healthSystem = new ResourceSystem(maxHealth, healthBar);
         manaSystem = new ResourceSystem(maxMana, manaBar);
     }
 
-    // Run physics
-    private void FixedUpdate() {
-        // make smoother movement
-        if (movementInput.magnitude > 0 && currentMoveSpeed >= 0) {
-            movementInputOld = movementInput;
-            currentMoveSpeed += acceleration * maxMoveSpeed * Time.deltaTime;
-        } else {
-            currentMoveSpeed -= deceleration * maxMoveSpeed * Time.deltaTime;
-        }
-        currentMoveSpeed = Mathf.Clamp(currentMoveSpeed, 0, maxMoveSpeed);
-        rb.velocity = movementInputOld * currentMoveSpeed;
-
-        // face mouse cursor
+    // Main game loop
+    private void Update() {
+        // Player face mouse cursor
         if (pointerInput.x < transform.position.x && facingRight) {
             facingRight = !facingRight;
             transform.Rotate(0f, 180f, 0f);
@@ -57,6 +52,21 @@ public class PlayerController : MonoBehaviour {
             transform.Rotate(0f, 180f, 0f);
         }
 
+        // Weapon face cursor
+        weaponParent.PointerPosition = pointerInput;
+    }
+
+    // Run physics
+    private void FixedUpdate() {
+        // Make smoother movement
+        if (movementInput.magnitude > 0 && currentMoveSpeed >= 0) {
+            movementInputOld = movementInput;
+            currentMoveSpeed += acceleration * maxMoveSpeed * Time.deltaTime;
+        } else {
+            currentMoveSpeed -= deceleration * maxMoveSpeed * Time.deltaTime;
+        }
+        currentMoveSpeed = Mathf.Clamp(currentMoveSpeed, 0, maxMoveSpeed);
+        rb.velocity = movementInputOld * currentMoveSpeed;
     }
 
     // --- INPUT SYSTEM ---
