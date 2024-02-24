@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponParentController : MonoBehaviour {
+    public PlayerController playerController;
     public SpriteRenderer playerRenderer, weaponRenderer;
 
     public Vector2 PointerPosition { get; set; }
@@ -14,6 +16,10 @@ public class WeaponParentController : MonoBehaviour {
     public float delay = 0.3f;
     private bool isAttacking = false;
     public bool IsAttacking { get; private set; }
+
+    // Raycast detection
+    public Transform raycastOrigin;
+    public float raycastRadius;
 
     public void ResetIsAttacking() {
         IsAttacking = false;
@@ -58,5 +64,25 @@ public class WeaponParentController : MonoBehaviour {
     private IEnumerator DelayAttack() {
         yield return new WaitForSeconds(delay);
         isAttacking = false;
+    }
+
+    public void DetectColliders() {
+        foreach (Collider2D collider in Physics2D.OverlapCircleAll(raycastOrigin.position, raycastRadius)) {
+            // Player can't hit themselves
+            if (collider.tag == "Player") { continue; }
+
+            // Deal damage to enemies
+            EnemyController enemyController = collider.GetComponent<EnemyController>();
+            if (enemyController != null) {
+                enemyController.ApplyDamage(playerController.getBaseDamage());
+            }
+
+        }
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        Vector3 position = raycastOrigin == null ? Vector3.zero : raycastOrigin.position;
+        Gizmos.DrawWireSphere(position, raycastRadius);
     }
 }

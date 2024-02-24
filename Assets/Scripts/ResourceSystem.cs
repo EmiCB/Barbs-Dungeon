@@ -18,9 +18,10 @@ public class ResourceSystem {
         this.max = max;
         current = max;
 
-        // TODO: make the UI component optional (in case we want hidden health values for lesser enemies)
-        this.barUI = barUI;
-        barUI.SetMaxValue(max);
+        if (barUI != null) {
+            this.barUI = barUI;
+            barUI.SetMaxValue(max);
+        }
     }
 
     /// <summary>
@@ -31,7 +32,9 @@ public class ResourceSystem {
         current -= amount;
         if (current < 0) current = 0;
 
-        barUI.SetCurrentValue(current);
+        if (barUI != null) {
+            barUI.SetCurrentValue(current);
+        }
     }
 
     /// <summary>
@@ -42,7 +45,9 @@ public class ResourceSystem {
         current += amount;
         if (current > max) current = max;
 
-        barUI.SetCurrentValue(current);
+        if (barUI != null) {
+            barUI.SetCurrentValue(current);
+        }
     }
 
     // --- GETTERS + SETTERS
@@ -59,7 +64,9 @@ public class ResourceSystem {
     public void SetCurrentValue(int newValue) {
         current = newValue;
 
-        barUI.SetCurrentValue(current);
+        if (barUI != null) {
+            barUI.SetCurrentValue(current);
+        }
     }
 
     /// <returns>The maximum value of the resource for this system.</returns>
@@ -74,6 +81,8 @@ public class ResourceSystem {
     public void SetMaxHealth(int newMax) {
         max = newMax;
 
-        barUI.SetMaxValue(current);
+        if (barUI != null) {
+            barUI.SetMaxValue(current);
+        }
     }
 }

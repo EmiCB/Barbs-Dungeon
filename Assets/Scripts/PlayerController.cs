@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour {
     private ResourceSystem manaSystem;
     public ResourceBar manaBar;
 
+    private int baseDamage = 1;       // TODO: split out into a character stats ScriptableObject
+
     // Component references
     private Rigidbody2D rb;
 
@@ -108,5 +110,10 @@ public class PlayerController : MonoBehaviour {
 
     void OnSkill4() {
         manaSystem.AddAmount(1);
+    }
+
+    // --- GETTERS + SETTERS
+    public int getBaseDamage() {
+        return baseDamage;
     }
 }
