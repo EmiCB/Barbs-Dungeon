@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// TODO: split out into general agent class (generalizes to enemies) + player input class
 public class PlayerController : MonoBehaviour {
     // Movement variables
     private float maxMoveSpeed = 10.0f;     // TODO: split out into a character stats ScriptableObject
