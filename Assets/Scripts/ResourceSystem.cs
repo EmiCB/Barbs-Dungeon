@@ -13,7 +13,7 @@ public class ResourceSystem {
     /// Initialize a resource bar with the specified maximum value and link it with the UI.
     /// </summary>
     /// <param name="max">The maximum value for the system to handle.</param>
-    /// <param name="barUI">The UI component to link the system to.</param>
+    /// <param name="barUI">(Optional) The UI component to link the system to.</param>
     public ResourceSystem(int max, ResourceBar barUI) {
         this.max = max;
         current = max;
@@ -50,7 +50,7 @@ public class ResourceSystem {
         }
     }
 
-    // --- GETTERS + SETTERS
+    // --- GETTERS + SETTERS ---
 
     /// <returns>The current value of the resource for this system.</returns>
     public int GetCurrentValue() {

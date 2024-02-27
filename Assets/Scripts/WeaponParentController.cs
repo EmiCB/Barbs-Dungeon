@@ -1,8 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// Class to control the Weapon Parent object. This allows for general weapon control
+/// and easy swapping of the specific weapon beaing used.
+/// </summary>
 public class WeaponParentController : MonoBehaviour {
     public PlayerController playerController;
     public SpriteRenderer playerRenderer, weaponRenderer;
@@ -12,18 +14,14 @@ public class WeaponParentController : MonoBehaviour {
     // Set up animnation
     public Animator animator;
 
-    // TODO: move this?
-    public float delay = 0.3f;
-    private bool isAttacking = false;
+    // Weapon cooldown
+    public float delay = 0.3f;      // TODO: split out into a weapon stats ScriptableObject
+    private bool isAttackInProgress = false;
     public bool IsAttacking { get; private set; }
 
     // Raycast detection
     public Transform raycastOrigin;
     public float raycastRadius;
-
-    public void ResetIsAttacking() {
-        IsAttacking = false;
-    }
 
     private void Update() {
         // Do not rotate if in att6ack animation
@@ -50,22 +48,39 @@ public class WeaponParentController : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Resets the IsAttacking property.
+    /// </summary>
+    public void ResetIsAttacking() {
+        IsAttacking = false;
+    }
+
+    /// <summary>
+    /// Perform an attack.
+    /// </summary>
     public void Attack() {
         // Stop attack if already attacking
-        if (isAttacking) { return; }
+        if (isAttackInProgress) { return; }
 
         // Trigger attack animation
         animator.SetTrigger("Attack");
         IsAttacking = true;
-        isAttacking = true;
+        isAttackInProgress = true;
         StartCoroutine(DelayAttack());
     }
 
+    /// <summary>
+    /// Disable attacking again until delay period is over.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator DelayAttack() {
         yield return new WaitForSeconds(delay);
-        isAttacking = false;
+        isAttackInProgress = false;
     }
 
+    /// <summary>
+    /// Handle collider collisions.
+    /// </summary>
     public void DetectColliders() {
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(raycastOrigin.position, raycastRadius)) {
             // Player can't hit themselves
@@ -80,7 +95,11 @@ public class WeaponParentController : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Draw gizmos to help visualize in the editor.
+    /// </summary>
     private void OnDrawGizmosSelected() {
+        // Display raycats attack circle
         Gizmos.color = Color.red;
         Vector3 position = raycastOrigin == null ? Vector3.zero : raycastOrigin.position;
         Gizmos.DrawWireSphere(position, raycastRadius);

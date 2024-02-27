@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class to control what a UI slider displays from a script.
+/// </summary>
 public class ResourceBar : MonoBehaviour {
     public Slider slider;
 
