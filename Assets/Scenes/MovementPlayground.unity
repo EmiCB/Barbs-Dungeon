@@ -196,7 +196,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1202631992, guid: 821e17089c78f40309af0538f7fbf050, type: 3}
+  m_Sprite: {fileID: 928485755, guid: 821e17089c78f40309af0538f7fbf050, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1136,7 +1136,7 @@ MonoBehaviour:
   playerRenderer: {fileID: 385055720}
   weaponRenderer: {fileID: 481791556}
   animator: {fileID: 481791557}
-  delay: 0.5
+  delay: 0.3
   raycastOrigin: {fileID: 1246485347}
   raycastRadius: 1
 --- !u!1 &759571065
