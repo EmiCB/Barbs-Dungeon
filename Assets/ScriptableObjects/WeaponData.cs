@@ -11,4 +11,6 @@ public class WeaponData : ScriptableObject {
 
     public int baseDamage;
     public float attackCooldown;
+
+    public GameObject projectile;
 }

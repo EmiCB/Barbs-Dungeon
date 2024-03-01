@@ -25,6 +25,12 @@ public class WeaponParentController : MonoBehaviour {
     public Transform raycastOrigin;
     public float raycastRadius;
 
+    public Transform projectileOrigin;
+
+    private void Start() {
+        animator = GetComponentInChildren<Animator>();
+    }
+
     private void Update() {
         // Do not rotate if in att6ack animation
         if (IsAttacking) { return; }
@@ -69,6 +75,11 @@ public class WeaponParentController : MonoBehaviour {
         IsAttacking = true;
         isAttackInProgress = true;
         StartCoroutine(DelayAttack());
+
+        // create projectile if ranged
+        if (weaponData.projectile != null) {
+            Instantiate(weaponData.projectile, projectileOrigin.position, weaponData.projectile.transform.rotation * transform.rotation);
+        }
     }
 
     /// <summary>
