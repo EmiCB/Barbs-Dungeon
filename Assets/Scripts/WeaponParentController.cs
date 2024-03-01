@@ -8,14 +8,15 @@ using UnityEngine;
 /// and easy swapping of the specific weapon beaing used.
 /// </summary>
 public class WeaponParentController : MonoBehaviour {
-    public PlayerController playerController;
-    public SpriteRenderer playerRenderer, weaponRenderer;
-    public WeaponData weaponData;
+    private PlayerController playerController;
+    private WeaponController weaponController;
+    private SpriteRenderer playerRenderer, weaponRenderer;
+    private WeaponData weaponData;
 
     public Vector2 PointerPosition { get; set; }
 
     // Set up animnation
-    public Animator animator;
+    private Animator animator;
 
     // Weapon cooldown
     private bool isAttackInProgress = false;
@@ -28,6 +29,12 @@ public class WeaponParentController : MonoBehaviour {
     public Transform projectileOrigin;
 
     private void Start() {
+        // automaticall get components for this script
+        playerController = GetComponentInParent<PlayerController>();
+        weaponController = GetComponentInChildren<WeaponController>();
+        playerRenderer = playerController.GetComponentInChildren<SpriteRenderer>();
+        weaponRenderer = GetComponentInChildren<SpriteRenderer>();
+        weaponData = GetComponentInChildren<WeaponController>().weaponData;
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -77,8 +84,10 @@ public class WeaponParentController : MonoBehaviour {
         StartCoroutine(DelayAttack());
 
         // create projectile if ranged
-        if (weaponData.projectile != null) {
-            Instantiate(weaponData.projectile, projectileOrigin.position, weaponData.projectile.transform.rotation * transform.rotation);
+        if (weaponData.projectilePrefab != null) {
+            Instantiate(weaponData.projectilePrefab, 
+                        projectileOrigin.position, 
+                        weaponData.projectilePrefab.transform.rotation * transform.rotation);
         }
     }
 
@@ -115,5 +124,10 @@ public class WeaponParentController : MonoBehaviour {
         Gizmos.color = Color.red;
         Vector3 position = raycastOrigin == null ? Vector3.zero : raycastOrigin.position;
         Gizmos.DrawWireSphere(position, raycastRadius);
+    }
+
+    // --- GETTERS + SETTERS ---
+    public WeaponData GetWeaponData() {
+        return weaponData;
     }
 }

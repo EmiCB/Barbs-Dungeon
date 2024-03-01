@@ -15,4 +15,5 @@ MonoBehaviour:
   weaponType: 1
   baseDamage: 1
   attackCooldown: 0.5
-  projectile: {fileID: 4148851061878198910, guid: df26aa813f8fe4194b685097d21bc19d, type: 3}
+  projectilePrefab: {fileID: 4148851061878198910, guid: df26aa813f8fe4194b685097d21bc19d, type: 3}
+  projectileForce: 0.5

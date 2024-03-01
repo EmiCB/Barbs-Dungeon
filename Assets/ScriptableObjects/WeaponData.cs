@@ -12,5 +12,7 @@ public class WeaponData : ScriptableObject {
     public int baseDamage;
     public float attackCooldown;
 
-    public GameObject projectile;
+    // projectile settings FOR RANGED WEAPONS ONLY
+    public GameObject projectilePrefab;
+    public float projectileForce;
 }

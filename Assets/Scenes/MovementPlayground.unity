@@ -810,6 +810,7 @@ GameObject:
   - component: {fileID: 481791556}
   - component: {fileID: 481791557}
   - component: {fileID: 481791559}
+  - component: {fileID: 481791560}
   m_Layer: 0
   m_Name: TestMeleeWeapon
   m_TagString: Untagged
@@ -948,6 +949,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &481791560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481791554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c6938135dd424d44a062e5a96077c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponData: {fileID: 11400000, guid: a0795bc858a2945ff808c0f7a2412db5, type: 2}
 --- !u!1 &597710440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,10 +1180,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 392854571}
-  playerRenderer: {fileID: 385055720}
-  weaponRenderer: {fileID: 481791556}
-  weaponData: {fileID: 11400000, guid: 16c1d5b985d7a41c9aaa655ebd95e9cc, type: 2}
-  animator: {fileID: 481791557}
+  weaponController: {fileID: 0}
+  playerRenderer: {fileID: 0}
+  weaponRenderer: {fileID: 0}
+  weaponData: {fileID: 0}
+  animator: {fileID: 0}
   raycastOrigin: {fileID: 1246485347}
   raycastRadius: 1
   projectileOrigin: {fileID: 338043244}
@@ -1896,6 +1911,7 @@ GameObject:
   - component: {fileID: 2061719909}
   - component: {fileID: 2061719910}
   - component: {fileID: 2061719911}
+  - component: {fileID: 2061719912}
   m_Layer: 0
   m_Name: TestRangedWeapon
   m_TagString: Untagged
@@ -2034,6 +2050,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2061719912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061719907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c6938135dd424d44a062e5a96077c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponData: {fileID: 11400000, guid: 16c1d5b985d7a41c9aaa655ebd95e9cc, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
