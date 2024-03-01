@@ -3,11 +3,10 @@ using UnityEngine.InputSystem;
 
 // TODO: split out into general agent class (generalizes to enemies) + player input class
 public class PlayerController : MonoBehaviour {
+    public StatBlock statBlock;
+
     // Movement variables
-    private float maxMoveSpeed = 10.0f;     // TODO: split out into a character stats ScriptableObject
     private float currentMoveSpeed = 0.0f;
-    private float acceleration = 5.0f;      // TODO: split out into a character stats ScriptableObject
-    private float deceleration = 5.0f;      // TODO: split out into a character stats ScriptableObject
     private Vector2 movementInput = Vector2.zero;
     private Vector2 movementInputOld = Vector2.zero;
     [SerializeField]
@@ -16,17 +15,13 @@ public class PlayerController : MonoBehaviour {
     private bool facingRight = true;
 
     // Health system
-    private int maxHealth = 10;     // TODO: split out into a character stats ScriptableObject
     private ResourceSystem healthSystem;
     public ResourceBar healthBar;
 
     // Mana system
-    private int maxMana = 10;       // TODO: split out into a character stats ScriptableObject
+
     private ResourceSystem manaSystem;
     public ResourceBar manaBar;
-
-    // Combat stats
-    private int baseDamage = 1;      // TODO: split out into a character stats ScriptableObject
 
     // Component references
     private Rigidbody2D rb;
@@ -41,8 +36,8 @@ public class PlayerController : MonoBehaviour {
         weaponParent = GetComponentInChildren<WeaponParentController>();
 
         // Initialize stats
-        healthSystem = new ResourceSystem(maxHealth, healthBar);
-        manaSystem = new ResourceSystem(maxMana, manaBar);
+        healthSystem = new ResourceSystem(statBlock.baseHealth, healthBar);
+        manaSystem = new ResourceSystem(statBlock.baseMana, manaBar);
     }
 
     // Main game loop
@@ -68,11 +63,11 @@ public class PlayerController : MonoBehaviour {
         // Make smoother movement
         if (movementInput.magnitude > 0 && currentMoveSpeed >= 0) {
             movementInputOld = movementInput;
-            currentMoveSpeed += acceleration * maxMoveSpeed * Time.deltaTime;
+            currentMoveSpeed += statBlock.acceleration * statBlock.baseMoveSpeed * Time.deltaTime;
         } else {
-            currentMoveSpeed -= deceleration * maxMoveSpeed * Time.deltaTime;
+            currentMoveSpeed -= statBlock.deceleration * statBlock.baseMoveSpeed * Time.deltaTime;
         }
-        currentMoveSpeed = Mathf.Clamp(currentMoveSpeed, 0, maxMoveSpeed);
+        currentMoveSpeed = Mathf.Clamp(currentMoveSpeed, 0, statBlock.baseMoveSpeed);
         rb.velocity = movementInputOld * currentMoveSpeed;
     }
 
@@ -131,12 +126,5 @@ public class PlayerController : MonoBehaviour {
     /// </summary>
     void OnSkill4() {
         manaSystem.AddAmount(1);
-    }
-
-    // --- GETTERS + SETTERS ---
-
-    /// <returns>Get the player's current base damage.</returns>
-    public int getBaseDamage() {
-        return baseDamage;
     }
 }

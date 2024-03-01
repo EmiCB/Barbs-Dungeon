@@ -578,6 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91edd8ef67ec047df971dd036ba2be16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statBlock: {fileID: 11400000, guid: 0b3f8744e5c5445058643be1e5da84b5, type: 2}
   pointerPosition: {fileID: 705881491262939121, guid: 7d231099b1c734a3196fd5915a29f9f5, type: 3}
   healthBar: {fileID: 1229292865}
   manaBar: {fileID: 597710442}
@@ -1135,8 +1136,8 @@ MonoBehaviour:
   playerController: {fileID: 392854571}
   playerRenderer: {fileID: 385055720}
   weaponRenderer: {fileID: 481791556}
+  weaponData: {fileID: 11400000, guid: a0795bc858a2945ff808c0f7a2412db5, type: 2}
   animator: {fileID: 481791557}
-  delay: 0.3
   raycastOrigin: {fileID: 1246485347}
   raycastRadius: 1
 --- !u!1 &759571065

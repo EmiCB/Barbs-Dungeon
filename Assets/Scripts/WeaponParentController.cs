@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
+// TODO: for later, add a function to update weapon data + display sprite on equip
+
 /// <summary>
 /// Class to control the Weapon Parent object. This allows for general weapon control
 /// and easy swapping of the specific weapon beaing used.
@@ -8,6 +10,7 @@ using UnityEngine;
 public class WeaponParentController : MonoBehaviour {
     public PlayerController playerController;
     public SpriteRenderer playerRenderer, weaponRenderer;
+    public WeaponData weaponData;
 
     public Vector2 PointerPosition { get; set; }
 
@@ -15,7 +18,6 @@ public class WeaponParentController : MonoBehaviour {
     public Animator animator;
 
     // Weapon cooldown
-    public float delay = 0.3f;      // TODO: split out into a weapon stats ScriptableObject
     private bool isAttackInProgress = false;
     public bool IsAttacking { get; private set; }
 
@@ -74,7 +76,7 @@ public class WeaponParentController : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     private IEnumerator DelayAttack() {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(weaponData.attackCooldown);
         isAttackInProgress = false;
     }
 
@@ -89,9 +91,8 @@ public class WeaponParentController : MonoBehaviour {
             // Deal damage to enemies
             EnemyController enemyController = collider.GetComponent<EnemyController>();
             if (enemyController != null) {
-                enemyController.ApplyDamage(playerController.getBaseDamage());
+                enemyController.ApplyDamage(weaponData.baseDamage);
             }
-
         }
     }
 
