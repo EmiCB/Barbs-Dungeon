@@ -28,4 +28,9 @@ public class ProjectileController : MonoBehaviour {
 
         gameObject.SetActive(false);
     }
+
+    // TODO: might need to change this if we want to hit enemies off screen
+    void OnBecameInvisible() {
+        gameObject.SetActive(false);
+    }
 }

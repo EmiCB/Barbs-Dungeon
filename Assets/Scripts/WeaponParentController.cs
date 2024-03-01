@@ -13,6 +13,8 @@ public class WeaponParentController : MonoBehaviour {
     private SpriteRenderer playerRenderer, weaponRenderer;
     private WeaponData weaponData;
 
+    public ObjectPooler projectilePool;
+
     public Vector2 PointerPosition { get; set; }
 
     // Set up animnation
@@ -36,6 +38,10 @@ public class WeaponParentController : MonoBehaviour {
         weaponRenderer = GetComponentInChildren<SpriteRenderer>();
         weaponData = GetComponentInChildren<WeaponController>().weaponData;
         animator = GetComponentInChildren<Animator>();
+
+        // set up projectile pool based on weapon
+        projectilePool.pooledObject = weaponData.projectilePrefab;
+        projectilePool.pooledAmount = 5;
     }
 
     private void Update() {
@@ -85,9 +91,10 @@ public class WeaponParentController : MonoBehaviour {
 
         // create projectile if ranged
         if (weaponData.projectilePrefab != null) {
-            Instantiate(weaponData.projectilePrefab, 
-                        projectileOrigin.position, 
-                        weaponData.projectilePrefab.transform.rotation * transform.rotation);
+            GameObject projectile = projectilePool.GetPooledObject();
+            projectile.transform.position = projectileOrigin.position;
+            projectile.transform.rotation = weaponData.projectilePrefab.transform.rotation * transform.rotation;
+            projectile.SetActive(true);
         }
     }
 
