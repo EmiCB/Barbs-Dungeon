@@ -12,6 +12,7 @@ public class StatBlock : ScriptableObject {
     public float baseMoveSpeed;
     public float acceleration;
     public float deceleration;
+    public float rollCooldown;
 
     // General RPG stats
     // TODO: fill in

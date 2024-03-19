@@ -1,9 +1,13 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 // TODO: split out into general agent class (generalizes to enemies) + player input class
 public class PlayerController : MonoBehaviour {
     public StatBlock statBlock;
+
+    // Set up animnation
+    private Animator animator;
 
     // Movement variables
     private float currentMoveSpeed = 0.0f;
@@ -19,7 +23,6 @@ public class PlayerController : MonoBehaviour {
     public ResourceBar healthBar;
 
     // Mana system
-
     private ResourceSystem manaSystem;
     public ResourceBar manaBar;
 
@@ -28,12 +31,15 @@ public class PlayerController : MonoBehaviour {
 
     // Combat references
     private WeaponParentController weaponParent;
+    public bool IsRolling { get; private set; }
+    private bool isRollInProgress = false;
 
     // Initialize player
     void Start() {
         // Find unassigned components
         rb = GetComponent<Rigidbody2D>();
         weaponParent = GetComponentInChildren<WeaponParentController>();
+        animator = GetComponent<Animator>();
 
         // Initialize stats
         healthSystem = new ResourceSystem(statBlock.baseHealth, healthBar);
@@ -81,6 +87,15 @@ public class PlayerController : MonoBehaviour {
         return Camera.main.ScreenToWorldPoint(mousePosition);
     }
 
+    public void ResetIsRolling() {
+        IsRolling = false;
+    }
+
+    private IEnumerator DelayRoll() {
+        yield return new WaitForSeconds(statBlock.rollCooldown);
+        isRollInProgress = false;
+    }
+
     // --- INPUT SYSTEM ---
 
     /// <summary>
@@ -89,6 +104,16 @@ public class PlayerController : MonoBehaviour {
     /// <param name="value">The action value that contains the Vector2 X/Y input from the player's input device.</param>
     void OnMove(InputValue value) {
         movementInput = value.Get<Vector2>();
+    }
+
+    void OnRoll() {
+        if (isRollInProgress) { return; }
+
+        // Trigger roll animation
+        animator.SetTrigger("Roll");
+        IsRolling = true;
+        isRollInProgress = true;
+        StartCoroutine(DelayRoll());
     }
 
     /// <summary>

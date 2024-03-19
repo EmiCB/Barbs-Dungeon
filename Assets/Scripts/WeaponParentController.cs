@@ -17,7 +17,7 @@ public class WeaponParentController : MonoBehaviour {
 
     public Vector2 PointerPosition { get; set; }
 
-    // Set up animnation
+    // Set up animation
     private Animator animator;
 
     // Weapon cooldown

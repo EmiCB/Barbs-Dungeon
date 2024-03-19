@@ -17,3 +17,4 @@ MonoBehaviour:
   baseMoveSpeed: 10
   acceleration: 5
   deceleration: 5
+  rollCooldown: 3
