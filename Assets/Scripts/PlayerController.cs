@@ -75,6 +75,13 @@ public class PlayerController : MonoBehaviour {
         }
         currentMoveSpeed = Mathf.Clamp(currentMoveSpeed, 0, statBlock.baseMoveSpeed);
         rb.velocity = movementInputOld * currentMoveSpeed;
+
+        // Integrate with animator
+        if (rb.velocity != Vector2.zero) {
+            animator.SetBool("isWalking", true);
+        } else {
+            animator.SetBool("isWalking", false);
+        }
     }
 
     /// <summary>
