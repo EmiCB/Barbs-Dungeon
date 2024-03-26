@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 10
   baseMana: 10
+  baseStamina: 10
   baseMoveSpeed: 10
   acceleration: 5
   deceleration: 5

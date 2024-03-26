@@ -7,6 +7,7 @@ public class StatBlock : ScriptableObject {
     // Resouces
     public int baseHealth;
     public int baseMana;
+    public int baseStamina;
 
     // Movement
     public float baseMoveSpeed;

@@ -26,6 +26,11 @@ public class PlayerController : MonoBehaviour {
     private ResourceSystem manaSystem;
     public ResourceBar manaBar;
 
+    // Stamina system
+    private ResourceSystem staminaSystem;
+    public ResourceBar staminaBar;
+    public int dodgeCost = 1; // TOOD: move this?
+
     // Component references
     private Rigidbody2D rb;
 
@@ -44,6 +49,7 @@ public class PlayerController : MonoBehaviour {
         // Initialize stats
         healthSystem = new ResourceSystem(statBlock.baseHealth, healthBar);
         manaSystem = new ResourceSystem(statBlock.baseMana, manaBar);
+        staminaSystem = new ResourceSystem(statBlock.baseStamina, staminaBar);
     }
 
     // Main game loop
@@ -121,6 +127,9 @@ public class PlayerController : MonoBehaviour {
         IsRolling = true;
         isRollInProgress = true;
         StartCoroutine(DelayRoll());
+
+        // reduce stamina
+        staminaSystem.RemoveAmount(dodgeCost);
     }
 
     /// <summary>
