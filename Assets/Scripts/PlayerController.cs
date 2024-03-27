@@ -2,21 +2,19 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// TODO: split out into general agent class (generalizes to enemies) + player input class
 public class PlayerController : MonoBehaviour {
+    // Component references
+    private AgentMover agentMover;
+    private AgentAnimator agentAnimator;
+
+    // Entity data
     public StatBlock statBlock;
 
-    // Set up animnation
-    private Animator animator;
-
     // Movement variables
-    private float currentMoveSpeed = 0.0f;
     private Vector2 movementInput = Vector2.zero;
-    private Vector2 movementInputOld = Vector2.zero;
     [SerializeField]
     private InputActionReference pointerPosition;
     private Vector2 pointerInput = Vector2.zero;
-    private bool facingRight = true;
 
     // Health system
     private ResourceSystem healthSystem;
@@ -31,20 +29,16 @@ public class PlayerController : MonoBehaviour {
     public ResourceBar staminaBar;
     public int dodgeCost = 1; // TOOD: move this?
 
-    // Component references
-    private Rigidbody2D rb;
-
     // Combat references
     private WeaponParentController weaponParent;
-    public bool IsRolling { get; private set; }
     private bool isRollInProgress = false;
 
     // Initialize player
     void Start() {
         // Find unassigned components
-        rb = GetComponent<Rigidbody2D>();
+        agentMover = GetComponent<AgentMover>();
+        agentAnimator = GetComponentInChildren<AgentAnimator>();
         weaponParent = GetComponentInChildren<WeaponParentController>();
-        animator = GetComponent<Animator>();
 
         // Initialize stats
         healthSystem = new ResourceSystem(statBlock.baseHealth, healthBar);
@@ -55,39 +49,9 @@ public class PlayerController : MonoBehaviour {
     // Main game loop
     private void Update() {
         pointerInput = GetPointerInput();
-
-        // Player face mouse cursor
-        if (pointerInput.x < transform.position.x && facingRight) {
-            facingRight = !facingRight;
-            transform.Rotate(0f, 180f, 0f);
-        }
-        else if (pointerInput.x > transform.position.x && !facingRight) {
-            facingRight = !facingRight;
-            transform.Rotate(0f, 180f, 0f);
-        }
-
-        // Weapon face cursor
-        weaponParent.PointerPosition = pointerInput;
-    }
-
-    // Run physics
-    private void FixedUpdate() {
-        // Make smoother movement
-        if (movementInput.magnitude > 0 && currentMoveSpeed >= 0) {
-            movementInputOld = movementInput;
-            currentMoveSpeed += statBlock.acceleration * statBlock.baseMoveSpeed * Time.deltaTime;
-        } else {
-            currentMoveSpeed -= statBlock.deceleration * statBlock.baseMoveSpeed * Time.deltaTime;
-        }
-        currentMoveSpeed = Mathf.Clamp(currentMoveSpeed, 0, statBlock.baseMoveSpeed);
-        rb.velocity = movementInputOld * currentMoveSpeed;
-
-        // Integrate with animator
-        if (rb.velocity != Vector2.zero) {
-            animator.SetBool("isWalking", true);
-        } else {
-            animator.SetBool("isWalking", false);
-        }
+        agentMover.movementInput = movementInput;
+        weaponParent.PointerPosition = pointerInput; // Weapon face cursor
+        AnimateCharacter();
     }
 
     /// <summary>
@@ -100,13 +64,15 @@ public class PlayerController : MonoBehaviour {
         return Camera.main.ScreenToWorldPoint(mousePosition);
     }
 
-    public void ResetIsRolling() {
-        IsRolling = false;
-    }
-
     private IEnumerator DelayRoll() {
         yield return new WaitForSeconds(statBlock.rollCooldown);
         isRollInProgress = false;
+    }
+
+    private void AnimateCharacter() {
+        Vector2 lookDirection = pointerInput - (Vector2)transform.position;
+        agentAnimator.RotateToPointer(lookDirection);
+        agentAnimator.PlayWalkAnimation(movementInput);
     }
 
     // --- INPUT SYSTEM ---
@@ -116,19 +82,18 @@ public class PlayerController : MonoBehaviour {
     /// </summary>
     /// <param name="value">The action value that contains the Vector2 X/Y input from the player's input device.</param>
     void OnMove(InputValue value) {
-        movementInput = value.Get<Vector2>();
+        movementInput = value.Get<Vector2>().normalized;
     }
 
     void OnRoll() {
         if (isRollInProgress) { return; }
 
         // Trigger roll animation
-        animator.SetTrigger("Roll");
-        IsRolling = true;
+        agentAnimator.PlayRollAnimation();
         isRollInProgress = true;
         StartCoroutine(DelayRoll());
 
-        // reduce stamina
+        // Reduce stamina
         staminaSystem.RemoveAmount(dodgeCost);
     }
 

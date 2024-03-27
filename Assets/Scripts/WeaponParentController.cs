@@ -31,7 +31,7 @@ public class WeaponParentController : MonoBehaviour {
     public Transform projectileOrigin;
 
     private void Start() {
-        // automaticall get components for this script
+        // automatically get components for this script
         playerController = GetComponentInParent<PlayerController>();
         weaponController = GetComponentInChildren<WeaponController>();
         playerRenderer = playerController.GetComponentInChildren<SpriteRenderer>();
@@ -45,7 +45,7 @@ public class WeaponParentController : MonoBehaviour {
     }
 
     private void Update() {
-        // Do not rotate if in att6ack animation
+        // Do not rotate if in attack animation
         if (IsAttacking) { return; }
 
         // Rotate based on cursor position
