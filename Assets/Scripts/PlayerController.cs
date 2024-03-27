@@ -4,11 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
     // Component references
-    private AgentMover agentMover;
-    private AgentAnimator agentAnimator;
-
-    // Entity data
-    public StatBlock statBlock;
+    private Agent agent;
 
     // Movement variables
     private Vector2 movementInput = Vector2.zero;
@@ -16,17 +12,6 @@ public class PlayerController : MonoBehaviour {
     private InputActionReference pointerPosition;
     private Vector2 pointerInput = Vector2.zero;
 
-    // Health system
-    private ResourceSystem healthSystem;
-    public ResourceBar healthBar;
-
-    // Mana system
-    private ResourceSystem manaSystem;
-    public ResourceBar manaBar;
-
-    // Stamina system
-    private ResourceSystem staminaSystem;
-    public ResourceBar staminaBar;
     public int dodgeCost = 1; // TOOD: move this?
 
     // Combat references
@@ -36,20 +21,14 @@ public class PlayerController : MonoBehaviour {
     // Initialize player
     void Start() {
         // Find unassigned components
-        agentMover = GetComponent<AgentMover>();
-        agentAnimator = GetComponentInChildren<AgentAnimator>();
+        agent = GetComponent<Agent>();
         weaponParent = GetComponentInChildren<WeaponParentController>();
-
-        // Initialize stats
-        healthSystem = new ResourceSystem(statBlock.baseHealth, healthBar);
-        manaSystem = new ResourceSystem(statBlock.baseMana, manaBar);
-        staminaSystem = new ResourceSystem(statBlock.baseStamina, staminaBar);
     }
 
     // Main game loop
     private void Update() {
         pointerInput = GetPointerInput();
-        agentMover.movementInput = movementInput;
+        agent.agentMover.movementInput = movementInput;
         weaponParent.PointerPosition = pointerInput; // Weapon face cursor
         AnimateCharacter();
     }
@@ -65,14 +44,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     private IEnumerator DelayRoll() {
-        yield return new WaitForSeconds(statBlock.rollCooldown);
+        yield return new WaitForSeconds( agent.statBlock.rollCooldown);
         isRollInProgress = false;
     }
 
     private void AnimateCharacter() {
         Vector2 lookDirection = pointerInput - (Vector2)transform.position;
-        agentAnimator.RotateToPointer(lookDirection);
-        agentAnimator.PlayWalkAnimation(movementInput);
+        agent.agentAnimator.RotateToPointer(lookDirection);
+        agent.agentAnimator.PlayWalkAnimation(movementInput);
     }
 
     // --- INPUT SYSTEM ---
@@ -89,12 +68,12 @@ public class PlayerController : MonoBehaviour {
         if (isRollInProgress) { return; }
 
         // Trigger roll animation
-        agentAnimator.PlayRollAnimation();
+        agent.agentAnimator.PlayRollAnimation();
         isRollInProgress = true;
         StartCoroutine(DelayRoll());
 
         // Reduce stamina
-        staminaSystem.RemoveAmount(dodgeCost);
+        agent.staminaSystem.RemoveAmount(dodgeCost);
     }
 
     /// <summary>
@@ -110,27 +89,27 @@ public class PlayerController : MonoBehaviour {
     /// Responds to Skill1 event from UnityInputSystem.
     /// </summary>
     void OnSkill1() {
-        healthSystem.RemoveAmount(1);
+        agent.healthSystem.RemoveAmount(1);
     }
 
     /// <summary>
     /// Responds to Skill2 event from UnityInputSystem.
     /// </summary>
     void OnSkill2() {
-        healthSystem.AddAmount(1);
+        agent.healthSystem.AddAmount(1);
     }
 
     /// <summary>
     /// Responds to Skill3 event from UnityInputSystem.
     /// </summary>
     void OnSkill3() {
-        manaSystem.RemoveAmount(1);
+        agent.manaSystem.RemoveAmount(1);
     }
 
     /// <summary>
     /// Responds to Skill4 event from UnityInputSystem.
     /// </summary>
     void OnSkill4() {
-        manaSystem.AddAmount(1);
+        agent.manaSystem.AddAmount(1);
     }
 }

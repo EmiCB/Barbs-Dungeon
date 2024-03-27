@@ -8,9 +8,7 @@ using UnityEngine;
 /// and easy swapping of the specific weapon beaing used.
 /// </summary>
 public class WeaponParentController : MonoBehaviour {
-    private PlayerController playerController;
-    private WeaponController weaponController;
-    private SpriteRenderer playerRenderer, weaponRenderer;
+    private SpriteRenderer agentRenderer, weaponRenderer;
     private WeaponData weaponData;
 
     public ObjectPooler projectilePool;
@@ -30,11 +28,9 @@ public class WeaponParentController : MonoBehaviour {
 
     public Transform projectileOrigin;
 
-    private void Start() {
+    private void Awake() {
         // automatically get components for this script
-        playerController = GetComponentInParent<PlayerController>();
-        weaponController = GetComponentInChildren<WeaponController>();
-        playerRenderer = playerController.GetComponentInChildren<SpriteRenderer>();
+        agentRenderer = transform.parent.gameObject.GetComponentInChildren<SpriteRenderer>();
         weaponRenderer = GetComponentInChildren<SpriteRenderer>();
         weaponData = GetComponentInChildren<WeaponController>().weaponData;
         animator = GetComponentInChildren<Animator>();
@@ -63,9 +59,9 @@ public class WeaponParentController : MonoBehaviour {
 
         // Hide weapon behind player if rotating above head
         if (transform.eulerAngles.z > 0 && transform.eulerAngles.z < 180) {
-            weaponRenderer.sortingOrder = playerRenderer.sortingOrder - 1;
+            weaponRenderer.sortingOrder = agentRenderer.sortingOrder - 1;
         } else {
-            weaponRenderer.sortingOrder = playerRenderer.sortingOrder + 1;
+            weaponRenderer.sortingOrder = agentRenderer.sortingOrder + 1;
         }
     }
 
