@@ -25,8 +25,7 @@ public class Agent : MonoBehaviour {
     public Vector2 movementDirection;
     public Vector2 aimDirection;
 
-    // TODO: change back to Awake and fix script execution error w/ ResourceBar
-    void Start() { 
+    void Awake() { 
         // Find unassigned components
         agentMover = GetComponent<AgentMover>();
         agentAnimator = GetComponentInChildren<AgentAnimator>();
