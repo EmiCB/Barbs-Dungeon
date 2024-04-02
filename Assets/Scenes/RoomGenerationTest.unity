@@ -230,9 +230,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {fileID: 8483208519510779702, guid: 9ae81a4a22bdd354f8a71942b0cf99da, type: 3}
-  amountOfRoom: 200
+  amountOfRoom: 80
   startColor: {x: 1, y: 0, z: 0, w: 1}
   endColor: {x: 0, y: 0, z: 1, w: 1}
+  size: {x: 100, y: 100}
 --- !u!114 &1116542634
 MonoBehaviour:
   m_ObjectHideFlags: 0
