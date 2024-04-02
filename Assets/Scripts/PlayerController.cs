@@ -12,11 +12,14 @@ public class PlayerController : MonoBehaviour {
     private InputActionReference pointerPosition;
     private Vector2 pointerInput = Vector2.zero;
 
-    public int dodgeCost = 1; // TOOD: move this?
+    public int dodgeCost = 1; // TODO: move this?
 
     // Combat references
     private WeaponParentController weaponParent;
     public bool isRollInProgress = false;
+
+    // audio
+    public float noiseEmissionRadius;
 
     // Initialize player
     void Start() {
@@ -30,17 +33,34 @@ public class PlayerController : MonoBehaviour {
         pointerInput = GetPointerInput();
         agent.agentMover.movementInput = movementInput;
         weaponParent.PointerPosition = pointerInput; // Weapon face cursor
+
+        UpdateNoiseEmission();
         AnimateCharacter();
     }
 
+    private void UpdateNoiseEmission() {
+        // TODO: move these values to params
+        // walking
+        if (movementInput.magnitude > 0) {
+            noiseEmissionRadius = 6.0f;
+        } else {
+            noiseEmissionRadius = 0.5f;
+        }
+
+        DetectNoiseReceivers();
+    }
+
     /// <summary>
-    /// Gets and transforms the current cursor position from screen to world coordinates.
+    /// Handle collider collisions.
     /// </summary>
-    /// <returns>The mouse position in world coodinates.</returns>
-    private Vector2 GetPointerInput() {
-        Vector3 mousePosition = pointerPosition.action.ReadValue<Vector2>();
-        mousePosition.z = Camera.main.nearClipPlane;
-        return Camera.main.ScreenToWorldPoint(mousePosition);
+    public void DetectNoiseReceivers() {
+        foreach (Collider2D collider in Physics2D.OverlapCircleAll(transform.position, noiseEmissionRadius)) {
+            EnemyController enemyTarget = collider.GetComponent<EnemyController>();
+
+            if (enemyTarget != null) {
+                enemyTarget.SetIsChasing(true);
+            }
+        }
     }
 
     private IEnumerator DelayRoll() {
@@ -59,6 +79,16 @@ public class PlayerController : MonoBehaviour {
     }
 
     // --- INPUT SYSTEM ---
+
+    /// <summary>
+    /// Gets and transforms the current cursor position from screen to world coordinates.
+    /// </summary>
+    /// <returns>The mouse position in world coodinates.</returns>
+    private Vector2 GetPointerInput() {
+        Vector3 mousePosition = pointerPosition.action.ReadValue<Vector2>();
+        mousePosition.z = Camera.main.nearClipPlane;
+        return Camera.main.ScreenToWorldPoint(mousePosition);
+    }
 
     /// <summary>
     /// Responds to Move event from UnityInputSystem.
@@ -115,5 +145,17 @@ public class PlayerController : MonoBehaviour {
     /// </summary>
     void OnSkill4() {
         agent.manaSystem.AddAmount(1);
+    }
+
+    // --- DEBUG ---
+
+    /// <summary>
+    /// Draw gizmos to help visualize in the editor.
+    /// </summary>
+    private void OnDrawGizmosSelected() {
+        // Display raycats attack circle
+        Gizmos.color = Color.cyan;
+        Vector3 position = transform.position == null ? Vector3.zero : transform.position;
+        Gizmos.DrawWireSphere(position, noiseEmissionRadius);
     }
 }

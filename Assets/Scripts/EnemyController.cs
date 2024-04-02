@@ -99,5 +99,10 @@ public class EnemyController : MonoBehaviour {
             // memory leaks
             gameObject.SetActive(false);
         }
-    }    
+    }   
+
+    // --- GETTERS + SETTERS ---
+    public void SetIsChasing(bool isChasing) {
+        this.isChasing = isChasing;
+    } 
 }
