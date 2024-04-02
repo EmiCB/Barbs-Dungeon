@@ -28,7 +28,7 @@ public class WeaponParentController : MonoBehaviour {
 
     public Transform projectileOrigin;
 
-    private void Awake() {
+    private void Start() {
         // automatically get components for this script
         agentRenderer = transform.parent.gameObject.GetComponentInChildren<SpriteRenderer>();
         weaponRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -105,16 +105,28 @@ public class WeaponParentController : MonoBehaviour {
 
     /// <summary>
     /// Handle collider collisions.
+    /// TODO: clean this up and make more flexible
     /// </summary>
     public void DetectColliders() {
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(raycastOrigin.position, raycastRadius)) {
-            // Player can't hit themselves
-            if (collider.tag == "Player") { continue; }
+            // Get users and targets
+            PlayerController playerUser = GetComponentInParent<PlayerController>();
+            EnemyController enemyUser = GetComponentInParent<EnemyController>();
+            PlayerController playerTarget = collider.GetComponent<PlayerController>();
+            EnemyController enemyTarget = collider.GetComponent<EnemyController>();
 
-            // Deal damage to enemies
-            EnemyController enemyController = collider.GetComponent<EnemyController>();
-            if (enemyController != null) {
-                enemyController.ApplyDamage(weaponData.baseDamage);
+            // User can't hit themselves
+            if (collider.tag == "Player" && playerUser != null) { continue; }
+            if (collider.tag == "Enemy" && enemyUser != null) { continue; }
+
+            // Deal damage to target
+            if (playerTarget != null) {
+                // Roll i-frames
+                if (playerTarget.isRollInProgress) { continue; }
+                playerTarget.ApplyDamage(weaponData.baseDamage);
+            }
+            if (enemyTarget != null) {
+                enemyTarget.ApplyDamage(weaponData.baseDamage);
             }
         }
     }

@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: TestPlayerStatBlock
   m_EditorClassIdentifier: 
   baseHealth: 10
-  baseMana: 10
-  baseStamina: 10
+  baseMana: 9
+  baseStamina: 8
   baseMoveSpeed: 10
   acceleration: 5
   deceleration: 5
   rollCooldown: 3
+  defense: 0
+  strength: 0
+  dexterity: 0
+  lethality: 0
+  intelligence: 0
+  wisdom: 0
+  agility: 0

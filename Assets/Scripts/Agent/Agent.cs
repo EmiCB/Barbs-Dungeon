@@ -25,7 +25,7 @@ public class Agent : MonoBehaviour {
     public Vector2 movementDirection;
     public Vector2 aimDirection;
 
-    void Awake() { 
+    void Start() { 
         // Find unassigned components
         agentMover = GetComponent<AgentMover>();
         agentAnimator = GetComponentInChildren<AgentAnimator>();

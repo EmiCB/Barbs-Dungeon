@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 
     // Combat references
     private WeaponParentController weaponParent;
-    private bool isRollInProgress = false;
+    public bool isRollInProgress = false;
 
     // Initialize player
     void Start() {
@@ -52,6 +52,10 @@ public class PlayerController : MonoBehaviour {
         Vector2 lookDirection = pointerInput - (Vector2)transform.position;
         agent.agentAnimator.RotateToPointer(lookDirection);
         agent.agentAnimator.PlayWalkAnimation(movementInput);
+    }
+
+    public void ApplyDamage(int amount) {
+        agent.healthSystem.RemoveAmount(amount);
     }
 
     // --- INPUT SYSTEM ---

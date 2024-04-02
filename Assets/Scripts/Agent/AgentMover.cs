@@ -11,7 +11,7 @@ public class AgentMover : MonoBehaviour {
     public Vector2 movementInput = Vector2.zero;
     private Vector2 movementInputOld = Vector2.zero;
 
-    void Awake() {
+    void Start() {
         // Find unassigned components
         rb2d = GetComponent<Rigidbody2D>();
         statBlock = GetComponent<Agent>().statBlock;

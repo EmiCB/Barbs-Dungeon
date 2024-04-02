@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f822934546e404da03f349dc64bcc4, type: 3}
   m_Name: TestEnemyStatBlock
   m_EditorClassIdentifier: 
-  baseHealth: 2
-  baseMana: 1
+  baseHealth: 3
+  baseMana: 2
   baseStamina: 1
-  baseMoveSpeed: 0
-  acceleration: 0
-  deceleration: 0
+  baseMoveSpeed: 5
+  acceleration: 3
+  deceleration: 5
   rollCooldown: 0
   defense: 0
   strength: 0

@@ -123,6 +123,26 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &135142973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6439271571486412378, guid: 4ffa3065f212b426cb43dd057cc8cfda, type: 3}
+  m_PrefabInstance: {fileID: 479863805411627863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &135142979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135142973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ca9312641a6461797e6b1c23b50b12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statBlock: {fileID: 0}
+  chaseDistanceThreshold: 5
+  attackDistanceThreshold: 2
 --- !u!1 &199780980
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,7 +938,7 @@ GameObject:
   - component: {fileID: 1017417588}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1711,10 +1731,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6439271571486412378, guid: 4ffa3065f212b426cb43dd057cc8cfda, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6439271571486412378, guid: 4ffa3065f212b426cb43dd057cc8cfda, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 135142979}
   m_SourcePrefab: {fileID: 100100000, guid: 4ffa3065f212b426cb43dd057cc8cfda, type: 3}
 --- !u!1001 &6398513387795559321
 PrefabInstance:

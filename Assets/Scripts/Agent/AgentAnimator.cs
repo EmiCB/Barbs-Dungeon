@@ -5,7 +5,7 @@ using UnityEngine;
 public class AgentAnimator : MonoBehaviour {
     private Animator animator;
 
-    void Awake() {
+    void Start() {
         animator = GetComponent<Animator>();
     }
 
