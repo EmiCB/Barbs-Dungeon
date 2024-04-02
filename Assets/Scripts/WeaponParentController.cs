@@ -1,8 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-// TODO: for later, add a function to update weapon data + display sprite on equip
-
 /// <summary>
 /// Class to control the Weapon Parent object. This allows for general weapon control
 /// and easy swapping of the specific weapon beaing used.
@@ -29,15 +27,9 @@ public class WeaponParentController : MonoBehaviour {
     public Transform projectileOrigin;
 
     private void Start() {
-        // automatically get components for this script
+        // Automatically get components for this script
         agentRenderer = transform.parent.gameObject.GetComponentInChildren<SpriteRenderer>();
-        weaponRenderer = GetComponentInChildren<SpriteRenderer>();
-        weaponData = GetComponentInChildren<WeaponController>().weaponData;
-        animator = GetComponentInChildren<Animator>();
-
-        // set up projectile pool based on weapon
-        projectilePool.pooledObject = weaponData.projectilePrefab;
-        projectilePool.pooledAmount = 5;
+        UpdateEquippedWeapon();
     }
 
     private void Update() {
@@ -86,7 +78,7 @@ public class WeaponParentController : MonoBehaviour {
         StartCoroutine(DelayAttack());
 
         // create projectile if ranged
-        if (weaponData.projectilePrefab != null) {
+        if (weaponData.weaponType == WeaponType.Ranged && weaponData.projectilePrefab != null) {
             GameObject projectile = projectilePool.GetPooledObject();
             projectile.transform.position = projectileOrigin.position;
             projectile.transform.rotation = weaponData.projectilePrefab.transform.rotation * transform.rotation;
@@ -132,6 +124,23 @@ public class WeaponParentController : MonoBehaviour {
     }
 
     /// <summary>
+    /// Update the equipped weapon references.
+    /// </summary>
+    public void UpdateEquippedWeapon() {
+        weaponRenderer = GetComponentInChildren<SpriteRenderer>();
+        weaponData = GetComponentInChildren<WeaponController>().weaponData;
+        animator = GetComponentInChildren<Animator>();
+
+        // Set up projectile pool based on weapon
+        if (weaponData.weaponType == WeaponType.Ranged && weaponData.projectilePrefab != null) {
+            projectilePool.pooledObject = weaponData.projectilePrefab;
+            projectilePool.pooledAmount = 5;
+        }
+    }
+
+    // --- DEBUG ---
+
+    /// <summary>
     /// Draw gizmos to help visualize in the editor.
     /// </summary>
     private void OnDrawGizmosSelected() {
@@ -142,6 +151,7 @@ public class WeaponParentController : MonoBehaviour {
     }
 
     // --- GETTERS + SETTERS ---
+
     public WeaponData GetWeaponData() {
         return weaponData;
     }
