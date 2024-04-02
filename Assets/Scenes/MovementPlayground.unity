@@ -143,6 +143,8 @@ MonoBehaviour:
   statBlock: {fileID: 0}
   chaseDistanceThreshold: 5
   attackDistanceThreshold: 2
+  sightDistance: 4
+  sightAngle: 20
 --- !u!1 &199780980
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,7 +1836,7 @@ SceneRoots:
   - {fileID: 1017417587}
   - {fileID: 1701300883}
   - {fileID: 996852912}
-  - {fileID: 6398513387795559321}
   - {fileID: 354146895}
   - {fileID: 660534400}
+  - {fileID: 6398513387795559321}
   - {fileID: 479863805411627863}

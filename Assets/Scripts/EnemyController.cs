@@ -10,9 +10,14 @@ public class EnemyController : MonoBehaviour {
     public StatBlock statBlock;
 
     // TODO: make these enemy parameters
-    public float chaseDistanceThreshold = 5.0f;
-    public float attackDistanceThreshold = 2.0f;
+    public float chaseDistanceThreshold;    // 5.0
+    public float attackDistanceThreshold;   // 2.0
+    public float sightDistance;             // 4.0
+    public float sightAngle;                // 20.0
     private float passedTime = 0.0f;
+    private bool isChasing;
+
+    private Vector2 facingDir;
 
     private Transform player;
 
@@ -22,6 +27,9 @@ public class EnemyController : MonoBehaviour {
         agent = GetComponent<Agent>();
         weaponParent = GetComponentInChildren<WeaponParentController>();
         player = FindObjectOfType<PlayerController>().transform;
+
+        isChasing = false;
+        facingDir = Vector2.zero;
     }
 
     private void Update() {
@@ -29,31 +37,45 @@ public class EnemyController : MonoBehaviour {
         if (player == null)
             return;
 
+        // get player position info
         float distanceToPlayer = Vector2.Distance(player.position, transform.position);
+        Vector2 direction = player.position - transform.position;
+        float angleToPlayer = Vector2.Angle(facingDir, direction);
 
-        if (distanceToPlayer < chaseDistanceThreshold ) {
-            // look towards player
-            agent.aimDirection = player.position;
-
-            // attack? or move
-            if (distanceToPlayer <= attackDistanceThreshold) {
-                agent.movementDirection = Vector2.zero;
-
-                if (passedTime >= weaponParent.GetWeaponData().attackCooldown) {
-                    passedTime = 0.0f;
-                    weaponParent.Attack();
-                }
-            }
-            
-            else {
-                Vector2 direction = player.position - transform.position;
-                agent.movementDirection = direction.normalized;
-            }
+        // check if player in line of sight
+        if (angleToPlayer < sightAngle && distanceToPlayer < sightDistance) {
+            isChasing = true;
         }
 
-        else {
+        if (isChasing) {
+            // check if player in chase radius
+            if (distanceToPlayer < chaseDistanceThreshold ) {
+                // look towards player
+                agent.aimDirection = player.position;
+                facingDir = player.position;
+
+                // attack
+                if (distanceToPlayer <= attackDistanceThreshold) {
+                    agent.movementDirection = Vector2.zero;
+
+                    if (passedTime >= weaponParent.GetWeaponData().attackCooldown) {
+                        passedTime = 0.0f;
+                        weaponParent.Attack();
+                    }
+                }
+                
+                // move towards player
+                else {
+                    agent.movementDirection = direction.normalized;
+                    
+                }
+            }
+
             // stop if lost sight
-            agent.movementDirection = Vector2.zero;
+            else {
+                agent.movementDirection = Vector2.zero;
+                isChasing = false;
+            }
         }
 
         // update timed variables
@@ -77,5 +99,5 @@ public class EnemyController : MonoBehaviour {
             // memory leaks
             gameObject.SetActive(false);
         }
-    }
+    }    
 }
