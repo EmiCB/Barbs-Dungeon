@@ -7,18 +7,12 @@ public class EnemyController : MonoBehaviour {
     private Agent agent;
     private WeaponParentController weaponParent;
 
-    public StatBlock statBlock;
+    public EnemyData enemyData;
 
-    // TODO: make these enemy parameters
-    public float chaseDistanceThreshold;    // 5.0
-    public float attackDistanceThreshold;   // 2.0
-    public float sightDistance;             // 4.0
-    public float sightAngle;                // 20.0
     private float passedTime = 0.0f;
     private bool isChasing;
 
     private Vector2 facingDir;
-
     private Transform player;
 
     // --- GAME CONTROL FLOW ---
@@ -43,19 +37,19 @@ public class EnemyController : MonoBehaviour {
         float angleToPlayer = Vector2.Angle(facingDir, direction);
 
         // check if player in line of sight
-        if (angleToPlayer < sightAngle && distanceToPlayer < sightDistance) {
+        if (angleToPlayer < enemyData.sightAngle && distanceToPlayer < enemyData.sightDistance) {
             isChasing = true;
         }
 
         if (isChasing) {
             // check if player in chase radius
-            if (distanceToPlayer < chaseDistanceThreshold ) {
+            if (distanceToPlayer < enemyData.chaseDistanceThreshold ) {
                 // look towards player
                 agent.aimDirection = player.position;
                 facingDir = player.position;
 
                 // attack
-                if (distanceToPlayer <= attackDistanceThreshold) {
+                if (distanceToPlayer <= enemyData.attackDistanceThreshold) {
                     agent.movementDirection = Vector2.zero;
 
                     if (passedTime >= weaponParent.GetWeaponData().attackCooldown) {
@@ -67,7 +61,6 @@ public class EnemyController : MonoBehaviour {
                 // move towards player
                 else {
                     agent.movementDirection = direction.normalized;
-                    
                 }
             }
 

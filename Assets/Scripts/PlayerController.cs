@@ -12,14 +12,17 @@ public class PlayerController : MonoBehaviour {
     private InputActionReference pointerPosition;
     private Vector2 pointerInput = Vector2.zero;
 
-    public int dodgeCost = 1; // TODO: move this?
-
     // Combat references
     private WeaponParentController weaponParent;
     public bool isRollInProgress = false;
 
     // audio
-    public float noiseEmissionRadius;
+    public float idleNoiseRadius;   // 0.5f
+    public float walkNoiseRadius;   // 6.0f
+    public float sneakNoiseRadius;
+    public float sprintNoiseRadius;
+
+    private float noiseEmissionRadius;
 
     // Initialize player
     void Start() {
@@ -39,12 +42,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void UpdateNoiseEmission() {
-        // TODO: move these values to params
         // walking
         if (movementInput.magnitude > 0) {
-            noiseEmissionRadius = 6.0f;
-        } else {
-            noiseEmissionRadius = 0.5f;
+            noiseEmissionRadius = walkNoiseRadius;
+        } 
+
+        // idle
+        else {
+            noiseEmissionRadius = idleNoiseRadius;
         }
 
         DetectNoiseReceivers();
@@ -107,7 +112,7 @@ public class PlayerController : MonoBehaviour {
         StartCoroutine(DelayRoll());
 
         // Reduce stamina
-        agent.staminaSystem.RemoveAmount(dodgeCost);
+        agent.staminaSystem.RemoveAmount(agent.statBlock.rollCost);
     }
 
     /// <summary>

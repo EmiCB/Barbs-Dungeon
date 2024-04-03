@@ -140,11 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ca9312641a6461797e6b1c23b50b12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statBlock: {fileID: 0}
-  chaseDistanceThreshold: 5
-  attackDistanceThreshold: 2
-  sightDistance: 4
-  sightAngle: 20
+  enemyData: {fileID: 11400000, guid: a2e89fd9d9eb54a8ea5ce744377a9e54, type: 2}
 --- !u!1 &199780980
 GameObject:
   m_ObjectHideFlags: 0
@@ -1813,6 +1809,14 @@ PrefabInstance:
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 1757643909}
+    - target: {fileID: 3695596673683431031, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
+      propertyPath: idleNoiseRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3695596673683431031, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
+      propertyPath: walkNoiseRadius
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4074664307446329721, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
       propertyPath: m_IsActive
       value: 0
