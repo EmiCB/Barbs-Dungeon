@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3007669564238625137}
   - component: {fileID: 4422545283026244541}
   - component: {fileID: 1673170470366106058}
+  - component: {fileID: 8435017640839280280}
   - component: {fileID: 3695596673683431031}
   m_Layer: 0
   m_Name: Player
@@ -143,6 +144,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementInput: {x: 0, y: 0}
+--- !u!114 &8435017640839280280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123014006827008951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ec972e48f5849a39c25c3cf8cf26c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentMover: {fileID: 0}
+  agentAnimator: {fileID: 0}
+  statBlock: {fileID: 11400000, guid: 0b3f8744e5c5445058643be1e5da84b5, type: 2}
+  healthBar: {fileID: 0}
+  manaBar: {fileID: 0}
+  staminaBar: {fileID: 0}
+  movementDirection: {x: 0, y: 0}
+  aimDirection: {x: 0, y: 0}
 --- !u!114 &3695596673683431031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,12 +176,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91edd8ef67ec047df971dd036ba2be16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statBlock: {fileID: 11400000, guid: 0b3f8744e5c5445058643be1e5da84b5, type: 2}
   pointerPosition: {fileID: 705881491262939121, guid: 7d231099b1c734a3196fd5915a29f9f5, type: 3}
-  healthBar: {fileID: 0}
-  manaBar: {fileID: 0}
-  staminaBar: {fileID: 0}
-  dodgeCost: 1
+  isRollInProgress: 0
+  idleNoiseRadius: 0.5
+  walkNoiseRadius: 6
+  sneakNoiseRadius: 0
+  sprintNoiseRadius: 0
 --- !u!1 &2686487333947206465
 GameObject:
   m_ObjectHideFlags: 0

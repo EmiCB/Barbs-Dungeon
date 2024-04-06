@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2123014006827008951, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3695596673683431031, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
     - {fileID: 4422545283026244541, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
@@ -72,14 +76,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2123014006827008951, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 818655644145334593}
+      addedObject: {fileID: 4739891209960348310}
   m_SourcePrefab: {fileID: 100100000, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
 --- !u!1 &6439271571486412378 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2123014006827008951, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
   m_PrefabInstance: {fileID: 4911903945001160173}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &818655644145334593
+--- !u!114 &4739891209960348310
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,14 +92,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6439271571486412378}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55ec972e48f5849a39c25c3cf8cf26c9, type: 3}
+  m_Script: {fileID: 11500000, guid: 40ca9312641a6461797e6b1c23b50b12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentMover: {fileID: 0}
-  agentAnimator: {fileID: 0}
-  statBlock: {fileID: 11400000, guid: ff9707b2a5a6344afb25aa2da43b526d, type: 2}
-  healthBar: {fileID: 0}
-  manaBar: {fileID: 0}
-  staminaBar: {fileID: 0}
-  movementDirection: {x: 0, y: 0}
-  aimDirection: {x: 0, y: 0}
+  enemyData: {fileID: 11400000, guid: a2e89fd9d9eb54a8ea5ce744377a9e54, type: 2}
