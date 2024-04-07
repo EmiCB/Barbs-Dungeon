@@ -17,4 +17,8 @@ public class InventoryManager : MonoBehaviour {
             isMenuOpen = true;
         }
     }
+
+    public void AddItem(string itemName, int quanitiy, Sprite itemSprite) {
+        Debug.Log(itemName + " " + quanitiy + "" + itemSprite);
+    }
 }
