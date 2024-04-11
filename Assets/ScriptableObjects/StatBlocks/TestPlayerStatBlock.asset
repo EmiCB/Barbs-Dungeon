@@ -19,10 +19,11 @@ MonoBehaviour:
   acceleration: 5
   deceleration: 5
   rollCooldown: 3
-  defense: 0
-  strength: 0
-  dexterity: 0
-  lethality: 0
-  intelligence: 0
-  wisdom: 0
-  agility: 0
+  rollCost: 1
+  defense: 5
+  strength: 5
+  dexterity: 5
+  lethality: 5
+  intelligence: 5
+  wisdom: 5
+  agility: 7
