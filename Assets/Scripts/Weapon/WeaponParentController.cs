@@ -114,7 +114,7 @@ public class WeaponParentController : MonoBehaviour {
             // Deal damage to target
             if (playerTarget != null) {
                 // Roll i-frames
-                if (playerTarget.isRollInProgress) { continue; }
+                if (playerTarget.IsRollOnCooldown) { continue; }
                 playerTarget.ApplyDamage(weaponData.baseDamage);
             }
             if (enemyTarget != null) {
