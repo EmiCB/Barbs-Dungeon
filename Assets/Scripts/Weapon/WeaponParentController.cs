@@ -91,7 +91,8 @@ public class WeaponParentController : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     private IEnumerator DelayAttack() {
-        yield return new WaitForSeconds(weaponData.attackCooldown);
+        Agent agent = GetComponentInParent<Agent>();
+        yield return new WaitForSeconds(weaponData.attackCooldown * agent.statBlock.attackSpeedMod);
         isAttackInProgress = false;
     }
 

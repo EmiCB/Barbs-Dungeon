@@ -1,3 +1,7 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Agent : MonoBehaviour {
@@ -6,7 +10,12 @@ public class Agent : MonoBehaviour {
     public AgentAnimator agentAnimator;
 
     // Agent data
+    public StatBlock ogStatBlock;
+
     public StatBlock statBlock;
+
+    // Buffs
+    public Dictionary<GUID, Func<StatBlock, StatBlock>> buffs = new Dictionary<GUID, Func<StatBlock, StatBlock>>();
 
     // Resource systems
     public ResourceSystem healthSystem;
@@ -46,6 +55,9 @@ public class Agent : MonoBehaviour {
 
         // Initialize timers
         UpdateResourceRegenerationTimes();
+
+        // Initalize stats
+        calculateStatBlock();
     }
 
     void Update() {
@@ -78,6 +90,34 @@ public class Agent : MonoBehaviour {
         if (timer >= time && system.GetCurrentValue() < system.GetMaxValue()) {
             system.AddAmount(1);
             timer = 0.0f;
+        }
+    }
+
+    // Could maybe refractor of agent buff later...
+    public void AddBuff(Func<StatBlock, StatBlock> buff, int seconds) {
+        GUID guid = GUID.Generate();
+        buffs.Add(guid, buff);
+
+        Debug.Log("Added Buff");
+
+        StartCoroutine(DelayBuff(guid, seconds));
+        calculateStatBlock();
+    }
+    private IEnumerator DelayBuff(GUID guid, int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        buffs.Remove(guid);
+
+        Debug.Log("Removed Buff");
+        calculateStatBlock();
+    }
+
+    private void calculateStatBlock()
+    {
+        statBlock = (StatBlock) ogStatBlock.Clone();
+        foreach (var i in buffs.Values)
+        {
+            statBlock = i(statBlock);
         }
     }
 }

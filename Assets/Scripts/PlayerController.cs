@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,6 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour {
     // Component references
     private Agent agent;
+
+    [SerializeField]
+    private ClassAbilityGeneric abilities;
 
     // Movement variables
     private Vector2 movementInput = Vector2.zero;
@@ -30,6 +34,8 @@ public class PlayerController : MonoBehaviour {
         // Find unassigned components
         agent = GetComponent<Agent>();
         weaponParent = GetComponentInChildren<WeaponParentController>();
+
+        abilities = new BeserkerAbilities(this);
     }
 
     // Main game loop
@@ -141,7 +147,7 @@ public class PlayerController : MonoBehaviour {
     void OnSkill1() {
         if (rollFrameCounter != 0) { return; }
 
-        agent.healthSystem.RemoveAmount(1);
+        abilities.OnSkill1();
     }
 
     /// <summary>
@@ -150,7 +156,7 @@ public class PlayerController : MonoBehaviour {
     void OnSkill2() {
         if (rollFrameCounter != 0) { return; }
 
-        agent.healthSystem.AddAmount(1);
+        abilities.OnSkill2();
     }
 
     /// <summary>
@@ -159,7 +165,7 @@ public class PlayerController : MonoBehaviour {
     void OnSkill3() {
         if (rollFrameCounter != 0) { return; }
 
-        agent.manaSystem.RemoveAmount(1);
+        abilities.OnSkill3();
     }
 
     /// <summary>
@@ -168,7 +174,12 @@ public class PlayerController : MonoBehaviour {
     void OnSkill4() {
         if (rollFrameCounter != 0) { return; }
 
-        agent.manaSystem.AddAmount(1);
+        abilities.OnSkill4();
+    }
+
+    public void AddBuff(Func<StatBlock, StatBlock> buff, int seconds)
+    {
+        agent.AddBuff(buff, seconds);
     }
 
     // --- DEBUG ---
