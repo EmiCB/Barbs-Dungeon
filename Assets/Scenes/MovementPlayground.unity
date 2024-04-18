@@ -8547,6 +8547,10 @@ PrefabInstance:
       propertyPath: projectilePool
       value: 
       objectReference: {fileID: 199780982}
+    - target: {fileID: 3541418408920922997, guid: 4ffa3065f212b426cb43dd057cc8cfda, type: 3}
+      propertyPath: ogStatBlock
+      value: 
+      objectReference: {fileID: 11400000, guid: ff9707b2a5a6344afb25aa2da43b526d, type: 2}
     - target: {fileID: 5689340770391524992, guid: 4ffa3065f212b426cb43dd057cc8cfda, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.25
@@ -8777,6 +8781,10 @@ PrefabInstance:
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 1757643909}
+    - target: {fileID: 8435017640839280280, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
+      propertyPath: ogStatBlock
+      value: 
+      objectReference: {fileID: 11400000, guid: 0b3f8744e5c5445058643be1e5da84b5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
