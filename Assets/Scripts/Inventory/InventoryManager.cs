@@ -25,14 +25,23 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
-    public void AddItem(string itemName, int quanitiy, Sprite itemSprite, string itemDescription) {
+    public int AddItem(string itemName, int quanitiy, Sprite itemSprite, string itemDescription) {
         // get next available slot
         for (int i = 0; i < itemSlots.Length; i++) {
-            if (!itemSlots[i].isFull) {
-                itemSlots[i].AddItem(itemName, quanitiy, itemSprite, itemDescription);
-                return;
+            if (!itemSlots[i].isFull
+                && itemSlots[i].itemName == itemName
+                || itemSlots[i].quanitiy == 0) {
+
+                int numItemsLeftOver = itemSlots[i].AddItem(itemName, quanitiy, itemSprite, itemDescription);
+
+                if (numItemsLeftOver > 0) {
+                    numItemsLeftOver = AddItem(itemName, numItemsLeftOver, itemSprite, itemDescription);
+                }
+
+                return numItemsLeftOver;
             }
         }
+        return quanitiy;
     }
 
     public void OnDeselectAllSlots() {
