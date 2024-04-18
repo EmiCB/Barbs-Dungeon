@@ -15,6 +15,7 @@ public class StatBlock : ScriptableObject {
     public float deceleration;
     public float rollCooldown;
     public int rollCost;
+    public int rollFrames;
 
     // General RPG stats
     [Space(5), Header("RPG Stats"), Space(5)]

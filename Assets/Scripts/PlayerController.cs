@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour {
 
     // Combat references
     private WeaponParentController weaponParent;
-    public bool isRollInProgress = false;
+    public bool IsRollOnCooldown = false;
+    private int rollFrameCounter = 0;
 
     // audio
     public float idleNoiseRadius;   // 0.5f
@@ -34,11 +35,17 @@ public class PlayerController : MonoBehaviour {
     // Main game loop
     private void Update() {
         pointerInput = GetPointerInput();
-        agent.agentMover.movementInput = movementInput;
+        if (rollFrameCounter == 0) { agent.movementDirection = movementInput; } // Don't update if agent is in roll frames
+
         weaponParent.PointerPosition = pointerInput; // Weapon face cursor
 
         UpdateNoiseEmission();
         AnimateCharacter();
+    }
+
+    private void FixedUpdate()
+    {
+        rollFrameCounter = Mathf.Min(rollFrameCounter + 1, 0);
     }
 
     private void UpdateNoiseEmission() {
@@ -70,7 +77,7 @@ public class PlayerController : MonoBehaviour {
 
     private IEnumerator DelayRoll() {
         yield return new WaitForSeconds( agent.statBlock.rollCooldown);
-        isRollInProgress = false;
+        IsRollOnCooldown = false;
     }
 
     private void AnimateCharacter() {
@@ -104,21 +111,25 @@ public class PlayerController : MonoBehaviour {
     }
 
     void OnRoll() {
-        if (isRollInProgress) { return; }
+        if (IsRollOnCooldown) { return; }
 
         // Trigger roll animation
         agent.agentAnimator.PlayRollAnimation();
-        isRollInProgress = true;
+        IsRollOnCooldown = true;
         StartCoroutine(DelayRoll());
 
         // Reduce stamina
         agent.staminaSystem.RemoveAmount(agent.statBlock.rollCost);
+
+        rollFrameCounter -= agent.statBlock.rollFrames;
     }
 
     /// <summary>
     /// Responds to Attack event from UnityInputSystem.
     /// </summary>
     void OnAttack() {
+        if (rollFrameCounter != 0) { return; }
+
         weaponParent.Attack();
     }
 
@@ -128,6 +139,8 @@ public class PlayerController : MonoBehaviour {
     /// Responds to Skill1 event from UnityInputSystem.
     /// </summary>
     void OnSkill1() {
+        if (rollFrameCounter != 0) { return; }
+
         agent.healthSystem.RemoveAmount(1);
     }
 
@@ -135,6 +148,8 @@ public class PlayerController : MonoBehaviour {
     /// Responds to Skill2 event from UnityInputSystem.
     /// </summary>
     void OnSkill2() {
+        if (rollFrameCounter != 0) { return; }
+
         agent.healthSystem.AddAmount(1);
     }
 
@@ -142,6 +157,8 @@ public class PlayerController : MonoBehaviour {
     /// Responds to Skill3 event from UnityInputSystem.
     /// </summary>
     void OnSkill3() {
+        if (rollFrameCounter != 0) { return; }
+
         agent.manaSystem.RemoveAmount(1);
     }
 
@@ -149,6 +166,8 @@ public class PlayerController : MonoBehaviour {
     /// Responds to Skill4 event from UnityInputSystem.
     /// </summary>
     void OnSkill4() {
+        if (rollFrameCounter != 0) { return; }
+
         agent.manaSystem.AddAmount(1);
     }
 

@@ -20,6 +20,7 @@ MonoBehaviour:
   deceleration: 5
   rollCooldown: 3
   rollCost: 1
+  rollFrames: 20
   defense: 5
   strength: 5
   dexterity: 5
