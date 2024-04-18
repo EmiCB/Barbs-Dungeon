@@ -12,6 +12,7 @@ public class Agent : MonoBehaviour {
     // Agent data
     public StatBlock ogStatBlock;
 
+    [NonSerialized]
     public StatBlock statBlock;
 
     // Buffs
@@ -41,6 +42,11 @@ public class Agent : MonoBehaviour {
     // Movement
     public Vector2 movementDirection;
     public Vector2 aimDirection;
+
+    private void Awake()
+    {
+        statBlock = (StatBlock) ogStatBlock.Clone();
+    }
 
     void Start() { 
         // Find unassigned components
