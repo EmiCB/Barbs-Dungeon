@@ -8,11 +8,14 @@ using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, IPointerClickHandler {
     // item data
-    private string itemName;
-    private int quanitiy;
+    public string itemName;
+    public int quanitiy;
     private Sprite itemSprite;
     private string itemDescription;
     public Sprite emptySprite;
+
+    [SerializeField]
+    private int maxStackSize;
 
     // item slot
     public bool isFull;
@@ -36,18 +39,31 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler {
         isSlotSelected = false;
     }
 
-    public void AddItem(string itemName, int quanitiy, Sprite itemSprite, string itemDescription) {
+    public int AddItem(string itemName, int quanitiy, Sprite itemSprite, string itemDescription) {
+
+        if (isFull) {
+            return quanitiy;
+        }
+
         this.itemName = itemName;
-        this.quanitiy = quanitiy;
         this.itemSprite = itemSprite;
+        itemImage.sprite = itemSprite;
         this.itemDescription = itemDescription;
 
-        isFull = true;
-
+        // cehck if slot overfilling
+        int totalItems = this.quanitiy + quanitiy;
+        if (totalItems >= maxStackSize) {
+            this.quanitiy = maxStackSize;
+            isFull = true;
+            quantityText.text = quanitiy.ToString();
+            quantityText.gameObject.SetActive(true);
+            return totalItems - maxStackSize;
+        }
+    
+        this.quanitiy += quanitiy;
         quantityText.text = quanitiy.ToString();
-        quantityText.enabled = true;
-
-        itemImage.sprite = itemSprite;
+        quantityText.gameObject.SetActive(true);
+        return 0;
     }
 
     public void OnPointerClick(PointerEventData eventData) {

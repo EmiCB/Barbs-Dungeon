@@ -166,7 +166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c093a050d911e49929942f1d3f78188e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemName: 
+  quanitiy: 0
   emptySprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  maxStackSize: 3
   isFull: 0
   quantityText: {fileID: 1346365243320646266}
   itemImage: {fileID: 8493330126882955602}
