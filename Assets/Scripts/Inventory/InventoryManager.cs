@@ -5,6 +5,8 @@ public class InventoryManager : MonoBehaviour {
     private bool isMenuOpen;
     public ItemSlot[] itemSlots;
 
+    public ItemData[] itemDatas;
+
     void Start() {
         // TODO: fix to be automatically finding item slots?
         //itemSlots = GetComponentsInChildren<ItemSlot>();
@@ -22,6 +24,15 @@ public class InventoryManager : MonoBehaviour {
             Time.timeScale = 0;
             inventoryMenu.SetActive(true);
             isMenuOpen = true;
+        }
+    }
+
+    public void UseItem(string itemName) {
+        for (int i = 0; i < itemDatas.Length; i++) {
+            if (itemDatas[i].itemName == itemName) {
+                itemDatas[i].UseItem();
+                return;
+            }
         }
     }
 
