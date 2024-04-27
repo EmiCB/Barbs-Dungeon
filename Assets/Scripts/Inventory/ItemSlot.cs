@@ -66,6 +66,15 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler {
         return 0;
     }
 
+    public void EmptySlot() {
+        quantityText.gameObject.SetActive(false);
+        itemImage.sprite = emptySprite;
+
+        itemNameText.text = "";
+        itemDescriptionText.text = "";
+        itemDescriptionImage.sprite = emptySprite;
+    }
+
     public void OnPointerClick(PointerEventData eventData) {
         // left click
         if (eventData.button == PointerEventData.InputButton.Left) {
@@ -82,6 +91,14 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler {
         // use item if already selected
         if (isSlotSelected) {
             inventoryManager.UseItem(itemName);
+
+            // remove on use
+            this.quanitiy--;
+            quantityText.text = quanitiy.ToString();
+            if (this.quanitiy <= 0) {
+                EmptySlot();
+            }
+
             return;
         }
 
