@@ -92,8 +92,26 @@ public class PlayerController : MonoBehaviour {
         agent.agentAnimator.PlayWalkAnimation(movementInput);
     }
 
+    // damage + heal
     public void ApplyDamage(int amount) {
         agent.healthSystem.RemoveAmount(amount);
+    }
+    public void Heal(int amount) {
+        agent.healthSystem.AddAmount(amount);
+    }
+
+    public void DrainMana(int amount) {
+        agent.manaSystem.RemoveAmount(amount);
+    }
+    public void RecoverMana(int amount) {
+        agent.manaSystem.AddAmount(amount);
+    }
+
+    public void DrainStamina(int amount) {
+        agent.staminaSystem.RemoveAmount(amount);
+    }
+    public void RecoverStamina(int amount) {
+        agent.staminaSystem.AddAmount(amount);
     }
 
     // --- INPUT SYSTEM ---
