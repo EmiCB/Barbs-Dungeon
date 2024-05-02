@@ -26,4 +26,14 @@ public class StatBlock : ScriptableObject {
     public int intelligence;        // increases spell power
     public int wisdom;              // affects mana regen rate
     public int agility;             // depletes when run / dodge, slowly recharges
+
+    //Additonal Mods
+    [Space(5), Header("Additional Mods"), Space(5)]
+    public float attackSpeedMod;
+    public float attackDamageMod;
+
+    public object Clone()
+    {
+        return this.MemberwiseClone();
+    }
 }

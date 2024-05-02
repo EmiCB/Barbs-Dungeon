@@ -19,6 +19,8 @@ MonoBehaviour:
   acceleration: 3
   deceleration: 5
   rollCooldown: 0
+  rollCost: 0
+  rollFrames: 0
   defense: 0
   strength: 0
   dexterity: 0
@@ -26,3 +28,5 @@ MonoBehaviour:
   intelligence: 0
   wisdom: 0
   agility: 0
+  attackSpeedMod: 1
+  attackDamageMod: 1

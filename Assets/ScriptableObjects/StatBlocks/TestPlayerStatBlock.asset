@@ -28,3 +28,5 @@ MonoBehaviour:
   intelligence: 5
   wisdom: 5
   agility: 7
+  attackSpeedMod: 1
+  attackDamageMod: 1
