@@ -52,7 +52,7 @@ public class EnemyController : MonoBehaviour {
                 if (distanceToPlayer <= enemyData.attackDistanceThreshold) {
                     agent.movementDirection = Vector2.zero;
 
-                    if (passedTime >= weaponParent.GetWeaponData().attackCooldown) {
+                    if (passedTime >= weaponParent.GetWeaponData().attackCooldown * 4) {
                         passedTime = 0.0f;
                         weaponParent.Attack();
                     }
@@ -72,9 +72,7 @@ public class EnemyController : MonoBehaviour {
         }
 
         // update timed variables
-        if (passedTime < weaponParent.GetWeaponData().attackCooldown) {
-            passedTime += Time.deltaTime;
-        }
+        passedTime += Time.deltaTime;
     }
 
     // --- FUNCTIONS --
