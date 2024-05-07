@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour {
     // ui yikes lol
     public GameObject deathScreen;
 
+    // sound fx
+    [SerializeField] private AudioClip takeDamageClip;
+
     // Initialize player
     void Start() {
         // Find unassigned components
@@ -98,6 +101,8 @@ public class PlayerController : MonoBehaviour {
     // damage + heal
     public void ApplyDamage(int amount) {
         agent.healthSystem.RemoveAmount(amount);
+
+        SoundFXManager.instance.PlaySoundFXClip(takeDamageClip, transform, 1.0f);
 
         // check if player dead
         if (agent.healthSystem.GetCurrentValue() <= 0) {

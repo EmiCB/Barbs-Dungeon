@@ -15,6 +15,8 @@ public class EnemyController : MonoBehaviour {
     private Vector2 facingDir;
     private Transform player;
 
+    [SerializeField] AudioClip takeDamageClip;
+
     // --- GAME CONTROL FLOW ---
 
     private void Start() {
@@ -83,6 +85,8 @@ public class EnemyController : MonoBehaviour {
     /// <param name="amount"></param>
     public void ApplyDamage(int amount) {
         agent.healthSystem.RemoveAmount(amount);
+
+        SoundFXManager.instance.PlaySoundFXClip(takeDamageClip, transform, 1.0f);
 
         // Check if enemy is dead and remove it from the scene.
         if (agent.healthSystem.GetCurrentValue() <= 0) {

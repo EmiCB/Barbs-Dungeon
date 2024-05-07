@@ -5362,6 +5362,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888793016}
   m_CullTransparentMesh: 1
+--- !u!1 &917652272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 917652273}
+  - component: {fileID: 917652274}
+  m_Layer: 0
+  m_Name: SoundFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &917652273
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917652272}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &917652274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917652272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df27a5f265a154715a8d00e39a44ba53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFXObject: {fileID: 84016913857460382, guid: adc82020b111d40c4939a43f39c8a625, type: 3}
 --- !u!1 &956977787
 GameObject:
   m_ObjectHideFlags: 0
@@ -5697,6 +5742,7 @@ MonoBehaviour:
   - {fileID: 1602959381}
   itemDatas:
   - {fileID: 11400000, guid: af247af61f1644564b7bf4abab38127e, type: 2}
+  openClip: {fileID: 8300000, guid: 922babb63ae9b47f48cbb3480794acdc, type: 3}
 --- !u!114 &991231302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5875,7 +5921,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b16257122ff214a3db72e7b0ce0bade2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6913,7 +6959,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 1f53e319-4146-40b7-a87c-fd0cc9928b00
+  m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1001 &1315216536
@@ -10318,6 +10364,10 @@ PrefabInstance:
       propertyPath: ogStatBlock
       value: 
       objectReference: {fileID: 11400000, guid: ff9707b2a5a6344afb25aa2da43b526d, type: 2}
+    - target: {fileID: 4739891209960348310, guid: 4ffa3065f212b426cb43dd057cc8cfda, type: 3}
+      propertyPath: takeDamageClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5b139ffaafd0346f4828fe2a7adf338d, type: 3}
     - target: {fileID: 5689340770391524992, guid: 4ffa3065f212b426cb43dd057cc8cfda, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.25
@@ -10488,6 +10538,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 464951455111772588, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 783080791066790765, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10536,10 +10590,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2686487333947206465, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3695596673683431031, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
       propertyPath: deathScreen
       value: 
       objectReference: {fileID: 708848098}
+    - target: {fileID: 3695596673683431031, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
+      propertyPath: takeDamageClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 89c3a1171a4784c8693486223f7678bf, type: 3}
+    - target: {fileID: 4074664307446329721, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6085370952473777949, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
+      propertyPath: bowClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e017aa3f51899487d8ce0a4e86d24ed0, type: 3}
     - target: {fileID: 6085370952473777949, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
       propertyPath: projectilePool
       value: 
@@ -10596,19 +10666,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthPotion
       objectReference: {fileID: 0}
-    - target: {fileID: 2313030295039338132, guid: 889095a2e996e4632ae93c2b98faca92, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7067997753093530744, guid: 889095a2e996e4632ae93c2b98faca92, type: 3}
-      propertyPath: itemName
-      value: Health Potion
-      objectReference: {fileID: 0}
-    - target: {fileID: 7067997753093530744, guid: 889095a2e996e4632ae93c2b98faca92, type: 3}
-      propertyPath: itemDescription
-      value: Mysterious red liquid in a bottle... couldn't hurt to drink it. Restores
-        3 Health.
-      objectReference: {fileID: 0}
     - target: {fileID: 9031497959628757954, guid: 889095a2e996e4632ae93c2b98faca92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.91
@@ -10659,6 +10716,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1017417587}
+  - {fileID: 917652273}
   - {fileID: 1389697343}
   - {fileID: 1089928517}
   - {fileID: 6398513387795559321}
