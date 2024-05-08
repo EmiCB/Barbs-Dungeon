@@ -10592,7 +10592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2686487333947206465, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3695596673683431031, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
       propertyPath: deathScreen
@@ -10604,7 +10604,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 89c3a1171a4784c8693486223f7678bf, type: 3}
     - target: {fileID: 4074664307446329721, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6085370952473777949, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
       propertyPath: bowClip
