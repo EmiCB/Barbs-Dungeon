@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void AnimateCharacter() {
-        Vector2 lookDirection = pointerInput - (Vector2)transform.position;
+        Vector2 lookDirection = pointerInput;
         agent.agentAnimator.RotateToPointer(lookDirection);
         agent.agentAnimator.PlayWalkAnimation(movementInput);
     }
