@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c4bfe11c07d4d84addf52eb15eaf56, type: 3}
+  m_Name: BossMelee
+  m_EditorClassIdentifier: 
+  weaponType: 0
+  baseDamage: 1
+  attackCooldown: 0.1
+  projectilePrefab: {fileID: 406530626860321866, guid: 5e7a56bbe647347d495b7560af8909f4, type: 3}
+  projectileForce: 0

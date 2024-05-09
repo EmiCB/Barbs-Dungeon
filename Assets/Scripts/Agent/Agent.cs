@@ -126,4 +126,23 @@ public class Agent : MonoBehaviour {
             statBlock = i(statBlock);
         }
     }
+
+    // --- FUNCTIONS --
+
+    /// <summary>
+    /// Apply damage to this enemy.
+    /// </summary>
+    /// <param name="amount"></param>
+    public void ApplyDamage(int amount)
+    {
+        healthSystem.RemoveAmount(amount);
+
+        // Check if enemy is dead and remove it from the scene.
+        if (healthSystem.GetCurrentValue() <= 0)
+        {
+            // TODO: make ObjectPooler for enemies to help increase performance + reduce possible
+            // memory leaks
+            gameObject.SetActive(false);
+        }
+    }
 }

@@ -77,23 +77,6 @@ public class EnemyController : MonoBehaviour {
         }
     }
 
-    // --- FUNCTIONS --
-
-    /// <summary>
-    /// Apply damage to this enemy.
-    /// </summary>
-    /// <param name="amount"></param>
-    public void ApplyDamage(int amount) {
-        agent.healthSystem.RemoveAmount(amount);
-
-        // Check if enemy is dead and remove it from the scene.
-        if (agent.healthSystem.GetCurrentValue() <= 0) {
-            // TODO: make ObjectPooler for enemies to help increase performance + reduce possible
-            // memory leaks
-            gameObject.SetActive(false);
-        }
-    }   
-
     // --- GETTERS + SETTERS ---
     public void SetIsChasing(bool isChasing) {
         this.isChasing = isChasing;
