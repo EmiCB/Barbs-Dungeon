@@ -193,6 +193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118204e5cd5194c24820816d6ed343d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Test
+  itemName: Health Potion
   quantity: 1
   sprite: {fileID: 21300000, guid: 126fed5f6bdd94fbbaee38e0c25654a5, type: 3}
+  itemDescription: Mysterious red liquid in a bottle... couldn't hurt to drink it.
+    Restores 3 Health.
+  collectClip: {fileID: 8300000, guid: 53c4e8e33c23b493da1e0633c0b4c167, type: 3}

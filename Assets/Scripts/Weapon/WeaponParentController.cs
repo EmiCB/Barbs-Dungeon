@@ -26,6 +26,8 @@ public class WeaponParentController : MonoBehaviour {
 
     public Transform projectileOrigin;
 
+    [SerializeField] AudioClip bowClip;
+
     private void Start() {
         // Automatically get components for this script
         agentRenderer = transform.parent.gameObject.GetComponentInChildren<SpriteRenderer>();
@@ -83,6 +85,8 @@ public class WeaponParentController : MonoBehaviour {
             projectile.transform.position = projectileOrigin.position;
             projectile.transform.rotation = weaponData.projectilePrefab.transform.rotation * transform.rotation;
             projectile.SetActive(true);
+
+            SoundFXManager.instance.PlaySoundFXClip(bowClip, transform, 0.5f);
         }
     }
 

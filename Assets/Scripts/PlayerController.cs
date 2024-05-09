@@ -29,6 +29,12 @@ public class PlayerController : MonoBehaviour {
 
     private float noiseEmissionRadius;
 
+    // ui yikes lol
+    public GameObject deathScreen;
+
+    // sound fx
+    [SerializeField] private AudioClip takeDamageClip;
+
     // Initialize player
     void Start() {
         // Find unassigned components
@@ -95,6 +101,13 @@ public class PlayerController : MonoBehaviour {
     // damage + heal
     public void ApplyDamage(int amount) {
         agent.healthSystem.RemoveAmount(amount);
+
+        SoundFXManager.instance.PlaySoundFXClip(takeDamageClip, transform, 1.0f);
+
+        // check if player dead
+        if (agent.healthSystem.GetCurrentValue() <= 0) {
+            OnPlayerDeath();
+        }
     }
     public void Heal(int amount) {
         agent.healthSystem.AddAmount(amount);
@@ -112,6 +125,13 @@ public class PlayerController : MonoBehaviour {
     }
     public void RecoverStamina(int amount) {
         agent.staminaSystem.AddAmount(amount);
+    }
+
+    public void OnPlayerDeath() {
+        // open death menu
+        deathScreen.SetActive(true);
+        // set timescale to 0
+        Time.timeScale = 0.0f;
     }
 
     // --- INPUT SYSTEM ---

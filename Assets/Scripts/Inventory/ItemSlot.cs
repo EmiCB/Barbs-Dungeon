@@ -50,7 +50,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler {
         itemImage.sprite = itemSprite;
         this.itemDescription = itemDescription;
 
-        // cehck if slot overfilling
+        // check if slot overfilling
         int totalItems = this.quanitiy + quanitiy;
         if (totalItems >= maxStackSize) {
             this.quanitiy = maxStackSize;

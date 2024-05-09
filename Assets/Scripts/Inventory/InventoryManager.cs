@@ -7,6 +7,8 @@ public class InventoryManager : MonoBehaviour {
 
     public ItemData[] itemDatas;
 
+    [SerializeField] AudioClip openClip;
+
     void Start() {
         // TODO: fix to be automatically finding item slots?
         //itemSlots = GetComponentsInChildren<ItemSlot>();
@@ -24,6 +26,8 @@ public class InventoryManager : MonoBehaviour {
             Time.timeScale = 0;
             inventoryMenu.SetActive(true);
             isMenuOpen = true;
+
+            SoundFXManager.instance.PlaySoundFXClip(openClip, transform, 1.0f);
         }
     }
 
