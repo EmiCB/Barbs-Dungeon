@@ -160,7 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agentMover: {fileID: 0}
   agentAnimator: {fileID: 0}
-  ogStatBlock: {fileID: 0}
+  ogStatBlock: {fileID: 11400000, guid: 0b3f8744e5c5445058643be1e5da84b5, type: 2}
   healthBar: {fileID: 0}
   manaBar: {fileID: 0}
   staminaBar: {fileID: 0}
@@ -186,7 +186,7 @@ MonoBehaviour:
   sneakNoiseRadius: 0
   sprintNoiseRadius: 0
   deathScreen: {fileID: 0}
-  takeDamageClip: {fileID: 0}
+  takeDamageClip: {fileID: 8300000, guid: 89c3a1171a4784c8693486223f7678bf, type: 3}
 --- !u!1 &2470665734358913230
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,7 +670,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -1184575188, guid: c871ba6a5f14241368c02cbab3f38e5c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -958,4 +958,4 @@ MonoBehaviour:
   raycastOrigin: {fileID: 134646312487023507}
   raycastRadius: 1
   projectileOrigin: {fileID: 7560641195431696351}
-  bowClip: {fileID: 0}
+  bowClip: {fileID: 8300000, guid: e017aa3f51899487d8ce0a4e86d24ed0, type: 3}
