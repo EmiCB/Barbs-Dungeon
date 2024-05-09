@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d69a93e08c7624fc2b15200f6f5b47da
+guid: ba80528d592674a43bc9eafad84e4587
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: KF Walk_0
+      name: AF Resize Alt Move_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 40
+        x: 10
+        y: 2
+        width: 26
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87b9ddf26fa514484ba70d371e18dd31
-      internalID: 1782592731
+      spriteID: dec2576fed4ff4175adf9e033c10806e
+      internalID: -1612886731
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KF Walk_1
+      name: AF Resize Alt Move_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 75
         y: 0
-        width: 32
-        height: 40
+        width: 24
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb7fef40e6f1b451eae77aa7ccc056a2
-      internalID: 1490286823
+      spriteID: 7403fa3a6343b4dff928c836e01c86a0
+      internalID: -327571632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KF Walk_2
+      name: AF Resize Alt Move_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 139
         y: 0
-        width: 32
-        height: 40
+        width: 24
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 175a23df86ff04fa4b20b0e4cfbf4a76
-      internalID: 1622870877
+      spriteID: 8a5f16309780249a6a22f709d6c3d786
+      internalID: 2138315186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KF Walk_3
+      name: AF Resize Alt Move_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 40
+        x: 202
+        y: 2
+        width: 26
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ae9357ee507d43cf99085500af97c75
-      internalID: 1813103900
+      spriteID: b1dbf08ac7e6841c581704e3ca4735cd
+      internalID: -66981898
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KF Walk_4
+      name: AF Resize Alt Move_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 268
         y: 0
-        width: 32
-        height: 40
+        width: 25
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1d48d6ca3ba64785b095762b69086de
-      internalID: -1231126002
+      spriteID: 813946fe7a99a4d31901216bbecad496
+      internalID: 222745329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KF Walk_5
+      name: AF Resize Alt Move_5
       rect:
         serializedVersion: 2
-        x: 160
+        x: 332
         y: 0
-        width: 32
-        height: 40
+        width: 25
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,8 +216,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4325beb64c2d14748bb1d957928cecb7
-      internalID: 187870033
+      spriteID: a1e0f33ba15684abbaf8ec3e7a7607f7
+      internalID: -39283200
       vertices: []
       indices: 
       edges: []
@@ -233,12 +233,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      KF Walk_0: 1782592731
-      KF Walk_1: 1490286823
-      KF Walk_2: 1622870877
-      KF Walk_3: 1813103900
-      KF Walk_4: -1231126002
-      KF Walk_5: 187870033
+      AF Resize Alt Move_0: -1612886731
+      AF Resize Alt Move_1: -327571632
+      AF Resize Alt Move_2: 2138315186
+      AF Resize Alt Move_3: -66981898
+      AF Resize Alt Move_4: 222745329
+      AF Resize Alt Move_5: -39283200
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

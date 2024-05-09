@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MovementPlayground.unity
     guid: c2cda63a6baab4a5181a5ad35c46a36a
+  - enabled: 1
+    path: Assets/Scenes/CharacterSelect.unity
+    guid: 0beb0458595594750a709886ea4cfcfb
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2ea337ea9841349648f8f748f55ec282, type: 2}

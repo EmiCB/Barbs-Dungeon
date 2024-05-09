@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d69a93e08c7624fc2b15200f6f5b47da
+guid: 70e74a88b24e24adebdf1dd61bc04556
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -71,7 +71,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: KF Walk_0
+      name: RF Walk _0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 40
+        x: 8
+        y: 3
+        width: 17
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87b9ddf26fa514484ba70d371e18dd31
-      internalID: 1782592731
+      spriteID: 13cbe8a3b4d25430d8d910e3c1c7928c
+      internalID: 2081607307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KF Walk_1
+      name: RF Walk _1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 40
+        x: 44
+        y: 3
+        width: 17
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb7fef40e6f1b451eae77aa7ccc056a2
-      internalID: 1490286823
+      spriteID: f6efbffbe919d48f7a48c447eab70707
+      internalID: 1964094728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KF Walk_2
+      name: RF Walk _2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 40
+        x: 81
+        y: 2
+        width: 15
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 175a23df86ff04fa4b20b0e4cfbf4a76
-      internalID: 1622870877
+      spriteID: b56f58fb6122b4cc480dea7b9c4ad52c
+      internalID: -309862924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KF Walk_3
+      name: RF Walk _3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 40
+        x: 117
+        y: 2
+        width: 15
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ae9357ee507d43cf99085500af97c75
-      internalID: 1813103900
+      spriteID: 31f36b018cbf54fb886f202a197c05ca
+      internalID: 944736622
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KF Walk_4
+      name: RF Walk _4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 40
+        x: 152
+        y: 3
+        width: 17
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1d48d6ca3ba64785b095762b69086de
-      internalID: -1231126002
+      spriteID: fef8fd386b68942c890c2c6de9d7b10c
+      internalID: 676193643
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KF Walk_5
+      name: RF Walk _5
       rect:
         serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 40
+        x: 188
+        y: 3
+        width: 17
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,8 +216,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4325beb64c2d14748bb1d957928cecb7
-      internalID: 187870033
+      spriteID: 7aba0922cd9b04e87adc6fd9dc30ebb0
+      internalID: 857713121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RF Walk _6
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 2
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6e242f217036495087f046b1c49573a
+      internalID: 806369657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RF Walk _7
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 2
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3de1801ace0ab47cfab7f7909267ff45
+      internalID: 1152299865
       vertices: []
       indices: 
       edges: []
@@ -233,12 +275,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      KF Walk_0: 1782592731
-      KF Walk_1: 1490286823
-      KF Walk_2: 1622870877
-      KF Walk_3: 1813103900
-      KF Walk_4: -1231126002
-      KF Walk_5: 187870033
+      RF Walk _0: 2081607307
+      RF Walk _1: 1964094728
+      RF Walk _2: -309862924
+      RF Walk _3: 944736622
+      RF Walk _4: 676193643
+      RF Walk _5: 857713121
+      RF Walk _6: 806369657
+      RF Walk _7: 1152299865
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

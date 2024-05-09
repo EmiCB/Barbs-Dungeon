@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d69a93e08c7624fc2b15200f6f5b47da
+guid: 77b7e5759a52d459e86077f74f928fba
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 500
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -71,7 +71,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -97,127 +97,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: KF Walk_0
+      name: Untitled_Artwork_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 40
+        x: 275
+        y: 339
+        width: 634
+        height: 1026
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87b9ddf26fa514484ba70d371e18dd31
-      internalID: 1782592731
+      spriteID: 6c00f4ae30b6848b3b6d42fe621996de
+      internalID: 807735796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KF Walk_1
+      name: Untitled_Artwork_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 40
+        x: 1007
+        y: 338
+        width: 634
+        height: 1026
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb7fef40e6f1b451eae77aa7ccc056a2
-      internalID: 1490286823
+      spriteID: 8f42e843ed5ea4f6fbffc0cff531e20b
+      internalID: 1111194274
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KF Walk_2
+      name: Untitled_Artwork_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 40
+        x: 1746
+        y: 342
+        width: 633
+        height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 175a23df86ff04fa4b20b0e4cfbf4a76
-      internalID: 1622870877
+      spriteID: 6b0902f18d0824672bb4c69d75c24746
+      internalID: 1229092923
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KF Walk_3
+      name: Untitled_Artwork_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 40
+        x: 2494
+        y: 344
+        width: 634
+        height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ae9357ee507d43cf99085500af97c75
-      internalID: 1813103900
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: KF Walk_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e1d48d6ca3ba64785b095762b69086de
-      internalID: -1231126002
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: KF Walk_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4325beb64c2d14748bb1d957928cecb7
-      internalID: 187870033
+      spriteID: 084be86f2eeeb4a238b9a7e1258e9666
+      internalID: -642046985
       vertices: []
       indices: 
       edges: []
@@ -233,12 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      KF Walk_0: 1782592731
-      KF Walk_1: 1490286823
-      KF Walk_2: 1622870877
-      KF Walk_3: 1813103900
-      KF Walk_4: -1231126002
-      KF Walk_5: 187870033
+      Untitled_Artwork_0: 807735796
+      Untitled_Artwork_1: 1111194274
+      Untitled_Artwork_2: 1229092923
+      Untitled_Artwork_3: -642046985
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
