@@ -40,7 +40,7 @@ public class WeaponParentController : MonoBehaviour {
 
         // Rotate based on cursor position
         Vector2 direction = (PointerPosition - (Vector2)transform.position).normalized;
-        transform.right = direction;
+        transform.rotation = Quaternion.FromToRotation(Vector2.right, direction);
 
         // Flip weapon (so it doesnt keep spinning)
         Vector2 scale = transform.localScale;
