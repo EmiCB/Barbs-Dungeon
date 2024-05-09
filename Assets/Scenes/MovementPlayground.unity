@@ -1031,6 +1031,7 @@ Transform:
   m_Children:
   - {fileID: 430552981}
   - {fileID: 356271071}
+  - {fileID: 203838552}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &199780980
@@ -1079,6 +1080,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 4148851061878198910, guid: df26aa813f8fe4194b685097d21bc19d, type: 3}
   pooledAmount: 10
+--- !u!4 &203838552 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5008895065262695323, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+  m_PrefabInstance: {fileID: 3130798185689666033}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &236445852
 GameObject:
   m_ObjectHideFlags: 0
@@ -10603,6 +10609,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RangerPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 6362517331863463163, guid: ad5a55d921944469088f17e292ccc491, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8535204923944646971, guid: ad5a55d921944469088f17e292ccc491, type: 3}
       propertyPath: deathScreen
       value: 
@@ -10685,6 +10695,87 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ffa3065f212b426cb43dd057cc8cfda, type: 3}
+--- !u!1001 &3130798185689666033
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 184821996}
+    m_Modifications:
+    - target: {fileID: 1958697437814685675, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: projectilePool
+      value: 
+      objectReference: {fileID: 199780982}
+    - target: {fileID: 4202447275637055086, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: manaBar
+      value: 
+      objectReference: {fileID: 597710442}
+    - target: {fileID: 4202447275637055086, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1229292865}
+    - target: {fileID: 4202447275637055086, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: staminaBar
+      value: 
+      objectReference: {fileID: 1757643909}
+    - target: {fileID: 5008895065262695323, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008895065262695323, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008895065262695323, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008895065262695323, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008895065262695323, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008895065262695323, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008895065262695323, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008895065262695323, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008895065262695323, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008895065262695323, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5920915947805027137, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: m_Name
+      value: AssassinPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5920915947805027137, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940843499025299073, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
+      propertyPath: deathScreen
+      value: 
+      objectReference: {fileID: 708848098}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5670457217834470a943a9e9aee3fb34, type: 3}
 --- !u!1001 &3515022995648305494
 PrefabInstance:
   m_ObjectHideFlags: 0
