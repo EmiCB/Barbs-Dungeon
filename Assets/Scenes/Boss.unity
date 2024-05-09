@@ -1192,6 +1192,7 @@ MonoBehaviour:
   raycastOrigin: {fileID: 718274321}
   raycastRadius: 1
   projectileOrigin: {fileID: 1243570793}
+  bowClip: {fileID: 0}
 --- !u!1001 &421135392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5188,6 +5189,7 @@ MonoBehaviour:
   - {fileID: 1603652810}
   - {fileID: 1808365823}
   itemDatas: []
+  openClip: {fileID: 0}
 --- !u!114 &955153785
 MonoBehaviour:
   m_ObjectHideFlags: 0
