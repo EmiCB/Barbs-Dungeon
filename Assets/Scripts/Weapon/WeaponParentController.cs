@@ -107,23 +107,24 @@ public class WeaponParentController : MonoBehaviour {
     public void DetectColliders() {
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(raycastOrigin.position, raycastRadius)) {
             // Get users and targets
-            PlayerController playerUser = GetComponentInParent<PlayerController>();
-            EnemyController enemyUser = GetComponentInParent<EnemyController>();
             PlayerController playerTarget = collider.GetComponent<PlayerController>();
-            EnemyController enemyTarget = collider.GetComponent<EnemyController>();
+            Agent enemyTarget = collider.GetComponent<Agent>();
+            PillarScript pillarTarget = collider.GetComponentInParent<PillarScript>();
 
             // User can't hit themselves
-            if (collider.tag == "Player" && playerUser != null) { continue; }
-            if (collider.tag == "Enemy" && enemyUser != null) { continue; }
+            if (collider.tag == "Player" && transform.parent.tag == "Player") { continue; }
+            if (collider.tag == "Enemy" && transform.parent.tag == "Enemy") { continue; }
 
             // Deal damage to target
             if (playerTarget != null) {
                 // Roll i-frames
-                if (playerTarget.IsRollOnCooldown) { continue; }
+                if (playerTarget.rollFrameCounter != 0) { continue; }
                 playerTarget.ApplyDamage(weaponData.baseDamage);
-            }
-            if (enemyTarget != null) {
+            } else if (enemyTarget != null) {
                 enemyTarget.ApplyDamage(weaponData.baseDamage);
+            } else if (pillarTarget != null)
+            {
+                pillarTarget.ApplyDamage(1);
             }
         }
     }

@@ -21,7 +21,7 @@ public class ProjectileController : MonoBehaviour {
         if (other.tag == "Player") { return; }
 
         // Deal damage to enemies
-        EnemyController enemyController = other.GetComponent<EnemyController>();
+        Agent enemyController = other.GetComponent<Agent>();
         if (enemyController != null) {
             enemyController.ApplyDamage(weaponData.baseDamage);
         }

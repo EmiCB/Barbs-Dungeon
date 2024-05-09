@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour {
         lastPlayerPos = player.transform.position;
     }
 
-	void Update(){
+	void LateUpdate(){
         // Calculate where the player has moved relative to camera
         distToMoveX = player.transform.position.x - lastPlayerPos.x;
         distToMoveY = player.transform.position.y - lastPlayerPos.y;

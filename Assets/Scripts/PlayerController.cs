@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
     // Combat references
     private WeaponParentController weaponParent;
     public bool IsRollOnCooldown = false;
-    private int rollFrameCounter = 0;
+    public int rollFrameCounter = 0;
 
     // audio
     public float idleNoiseRadius;   // 0.5f
