@@ -10750,6 +10750,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4784700159983093791, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784700159983093791, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6085370952473777949, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
       propertyPath: bowClip
       value: 
@@ -10774,6 +10782,10 @@ PrefabInstance:
       propertyPath: ogStatBlock
       value: 
       objectReference: {fileID: 11400000, guid: 0b3f8744e5c5445058643be1e5da84b5, type: 2}
+    - target: {fileID: 8569524515608316956, guid: e28c87cf7daf3462b9f6111f2cc07cd1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
