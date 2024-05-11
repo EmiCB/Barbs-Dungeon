@@ -1,11 +1,12 @@
 using Graphs;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using TreeEditor;
 using UnityEngine;
 using UnityEngine.InputSystem.Android;
-
+using UnityEngine.Tilemaps;
 using RandomSys = System.Random;
 
 
@@ -66,8 +67,15 @@ public class LevelGeneration : MonoBehaviour
             GameObject temp = Instantiate(room, new Vector3(0, 0, 0), Quaternion.identity);
             temp.GetComponentInChildren<SpriteRenderer>().color = Vector4.Lerp(startColor, endColor, i/(float)amountOfRoom);
 
-            temp.transform.localScale = new Vector3((int) Mathf.Ceil(GuassianRandomRange(4, 0, 20)), (int) Mathf.Ceil(GuassianRandomRange(4, 0, 20)), 1);
-            temp.transform.position = RandomCircle(0.1f) - (temp.transform.localScale * 0.5f);
+            //if (i < (float) amountOfRoom/2)
+            {
+                temp.transform.localScale = new Vector3((int) Mathf.Ceil(GuassianRandomRange(8, 3, 25)), (int) Mathf.Ceil(GuassianRandomRange(8, 3, 25)), 1);
+            }
+            //else
+            //{
+                //temp.transform.localScale = new Vector3((int)Mathf.Ceil(GuassianRandomRange(2, 3, 7)), (int)Mathf.Ceil(GuassianRandomRange(2, 3, 5)), 1);
+            //}
+            temp.transform.position = RandomCircle(5.0f) - (temp.transform.localScale * 0.5f);
             rooms.Add(temp);
             sizes.Add((int) temp.transform.localScale.x * (int) temp.transform.localScale.y);
         }
@@ -146,19 +154,20 @@ public class LevelGeneration : MonoBehaviour
         {
             Generate();
             hasFinished = 4;
+            GenerateRooms();
         }
     }
 
     bool DoesIntersect(GameObject a, GameObject b)
     {
         float aLeft = a.transform.position.x;
-        float aRight = a.transform.position.x + a.transform.localScale.x;
-        float aTop = a.transform.position.y + a.transform.localScale.y;
+        float aRight = a.transform.position.x + a.transform.localScale.x + 4;
+        float aTop = a.transform.position.y + a.transform.localScale.y + 4;
         float aBottom = a.transform.position.y;
 
         float bLeft = b.transform.position.x;
-        float bRight = b.transform.position.x + b.transform.localScale.x;
-        float bTop = b.transform.position.y + b.transform.localScale.y;
+        float bRight = b.transform.position.x + b.transform.localScale.x + 4;
+        float bTop = b.transform.position.y + b.transform.localScale.y + 4;
         float bBottom = b.transform.position.y;
 
         return (aLeft < bRight &&
@@ -181,8 +190,8 @@ public class LevelGeneration : MonoBehaviour
         float temp = -1f;
         do
         {
-            temp = GuassianRandom(stdDev);
-        } while (temp < 0);
+            temp = GuassianRandom(stdDev) + min;
+        } while (temp < min || temp > max);
         return temp;
     }
 
@@ -277,11 +286,34 @@ public class LevelGeneration : MonoBehaviour
             var path = aStar.FindPath(startPos, endPos, (DungeonPathfinder2D.Node a, DungeonPathfinder2D.Node b) => {
                 var pathCost = new DungeonPathfinder2D.PathCost();
 
-                pathCost.cost = Vector2Int.Distance(b.Position, endPos);
+                pathCost.cost = Vector2Int.Distance(b.Position, endPos) * 5;
+
+                for (int i = -1; i < 2; i++)
+                {
+                    for (int j = -1; j < 3; j++)
+                    {
+                        if (i == 0 && i == j) continue;
+
+                        var x = new Vector2Int(b.Position.x + i, b.Position.y + j);
+                        if (x.y >= size.y) continue;
+                        if (x.y < 0) continue;
+                        if (x.x < 0) continue;
+                        if (x.x >= size.x) continue;
+
+                        if (grid[x] == CellType.Room)
+                        {
+                            pathCost.cost += 40;
+                        }
+                        else if (grid[b.Position] == CellType.Hallway)
+                        {
+                            pathCost.cost += 10;
+                        }
+                    }
+                }
 
                 if (grid[b.Position] == CellType.Room)
                 {
-                    pathCost.cost += 10;
+                    pathCost.cost += 40;
                 }
                 else if (grid[b.Position] == CellType.None)
                 {
@@ -289,8 +321,10 @@ public class LevelGeneration : MonoBehaviour
                 }
                 else if (grid[b.Position] == CellType.Hallway)
                 {
-                    pathCost.cost += 1;
+                    pathCost.cost = 1;
                 }
+
+
 
                 pathCost.traversable = true;
 
@@ -315,7 +349,7 @@ public class LevelGeneration : MonoBehaviour
                         var delta = current - prev;
                     }
                 }
-
+                
                 foreach (var pos in path)
                 {
                     if (grid[pos] == CellType.Hallway)
@@ -327,15 +361,291 @@ public class LevelGeneration : MonoBehaviour
         }
     }
 
+    List<GameObject> pathCubes = new List<GameObject>();
     void PlaceCube(Vector2Int location, Vector2Int placeSize)
     {
         GameObject go = Instantiate(room, new Vector3(location.x - (size.x/2), location.y - (size.y/2), 0), Quaternion.identity);
         go.GetComponent<Transform>().localScale = new Vector3(placeSize.x, 1, placeSize.y);
+        pathCubes.Add(go);
     }
 
     void PlaceHallway(Vector2Int location)
     {
         PlaceCube(location, new Vector2Int(1, 1));
     }
+
+
+    public Tile[] wallTiles;
+    public Tile[] cornerTiles;
+    public Tile[] wallBorderTiles;
+
+    public Tile[] floorTiles;
+    public Tile[] connerFloorTiles;
+    public Tile[] floorEdgeTiles;
+
+    public Tile[] hallwayEdgeTiles;
+
+
+
+    public Tilemap wall;
+    public Tilemap floor;
+    //public Tile[] wallTiles;
+
+
+    // Tile Map stuff
+    public void GenerateRooms()
+    {
+        wall.ClearAllTiles();
+        floor.ClearAllTiles();
+
+        for (int i = 0; i < rooms.Count; i++)
+        {
+            {
+                // wall
+                Vector3Int pos = Vector3Int.FloorToInt(rooms[i].transform.position) * 2;
+                Vector3Int roomSize = Vector3Int.FloorToInt(rooms[i].transform.localScale) * 2;
+
+                for (int j = 0; j < roomSize.y - 1; j++)
+                {
+                    pos.y++;
+                    wall.SetTile(pos, wallBorderTiles[3]);
+                }
+                wall.SetTile(pos, cornerTiles[0]);
+
+                Vector3Int wallPos1 = pos;
+                Vector3Int wallPos2 = pos;
+                wallPos1.y--;
+                wallPos2.y -= 2;
+
+                for (int j = 0; j < roomSize.x - 1; j++)
+                {
+                    pos.x++;
+                    wallPos1.x++;
+                    wallPos2.x++;
+                    wall.SetTile(pos, wallBorderTiles[0]);
+                    wall.SetTile(wallPos1, wallTiles[2]);
+                    wall.SetTile(wallPos2, wallTiles[3]);
+                }
+                wallPos1.x--;
+                wallPos2.x--;
+                wall.SetTile(wallPos1, wallTiles[4]);
+                wall.SetTile(wallPos2, wallTiles[5]);
+
+                wallPos1.x = (int)(rooms[i].transform.position.x * 2) + 1;
+                wallPos2.x = wallPos1.x;
+                wall.SetTile(wallPos1, wallTiles[0]);
+                wall.SetTile(wallPos2, wallTiles[1]);
+
+                wall.SetTile(pos, cornerTiles[1]);
+                for (int j = 0; j < roomSize.y - 1; j++)
+                {
+                    pos.y--;
+                    wall.SetTile(pos, wallBorderTiles[1]);
+                }
+
+                wall.SetTile(pos, cornerTiles[2]);
+                for (int j = 0; j < roomSize.x - 1; j++)
+                {
+                    pos.x--;
+                    wall.SetTile(pos, wallBorderTiles[2]);
+                }
+                wall.SetTile(pos, cornerTiles[3]);
+            }
+
+            {
+                //Floor
+                Vector3Int pos = Vector3Int.FloorToInt(rooms[i].transform.position) * 2;
+                Vector3Int roomSize = Vector3Int.FloorToInt(rooms[i].transform.localScale) * 2;
+
+                pos.x++;
+                pos.y++;
+
+                for (int j = 0; j < roomSize.y - 5; j++)
+                {
+                    pos.y++;
+                    floor.SetTile(pos, floorEdgeTiles[3]);
+                }
+                floor.SetTile(pos, connerFloorTiles[0]);
+
+                for (int j = 0; j < roomSize.x - 3; j++)
+                {
+                    pos.x++;
+                    floor.SetTile(pos, floorEdgeTiles[0]);
+                }
+
+                floor.SetTile(pos, connerFloorTiles[1]);
+                for (int j = 0; j < roomSize.y - 5; j++)
+                {
+                    pos.y--;
+                    floor.SetTile(pos, floorEdgeTiles[1]);
+                }
+
+                floor.SetTile(pos, connerFloorTiles[2]);
+                for (int j = 0; j < roomSize.x - 3; j++)
+                {
+                    pos.x--;
+                    floor.SetTile(pos, floorEdgeTiles[2]);
+                }
+                floor.SetTile(pos, connerFloorTiles[3]);
+
+
+                pos.x++;
+                pos.y++;
+                Vector3Int temp = new Vector3Int();
+                for (int ii = 0; ii < roomSize.x - 4; ii++)
+                {
+                    for (int jj = 0; jj < roomSize.y - 6; jj++)
+                    {
+                        temp.x = pos.x + ii;
+                        temp.y = pos.y + jj;
+
+                        floor.SetTile(temp, floorTiles[0]);
+                    }
+                }
+
+            }
+
+            //Destroy(rooms[i]);
+        }
+
+        for (int i = 0; i < pathCubes.Count; i++)
+        {
+            Vector3Int pos = Vector3Int.FloorToInt(pathCubes[i].transform.position) * 2;
+            floor.SetTile(pos, floorTiles[0]);
+            pos.x++;
+            floor.SetTile(pos, floorTiles[0]);
+            pos.y++;
+            floor.SetTile(pos, floorTiles[0]);
+            pos.x--;
+            floor.SetTile(pos, floorTiles[0]);
+        }
+
+        for (int i = 0; i < pathCubes.Count; i++)
+        {
+            Vector3Int pos = Vector3Int.FloorToInt(pathCubes[i].transform.position) * 2;
+
+            pos.x--;
+            int index = hallwayIndex(floor, wall, pos);
+            if (index != -1) { wall.SetTile(pos, hallwayEdgeTiles[index]); }
+
+            pos.y--;
+            index = hallwayIndex(floor, wall, pos);
+            if (index != -1) { wall.SetTile(pos, hallwayEdgeTiles[index]); }
+
+            pos.x++;
+            index = hallwayIndex(floor, wall, pos);
+            if (index != -1) { wall.SetTile(pos, hallwayEdgeTiles[index]); }
+
+            pos.x++;
+            index = hallwayIndex(floor, wall, pos);
+            if (index != -1) { wall.SetTile(pos, hallwayEdgeTiles[index]); }
+
+            pos.x++;
+            index = hallwayIndex(floor, wall, pos);
+            if (index != -1) { wall.SetTile(pos, hallwayEdgeTiles[index]); }
+
+            pos.y++;
+            index = hallwayIndex(floor, wall, pos);
+            if (index != -1) { wall.SetTile(pos, hallwayEdgeTiles[index]); }
+
+            pos.y++;
+            index = hallwayIndex(floor, wall, pos);
+            if (index != -1) { wall.SetTile(pos, hallwayEdgeTiles[index]); }
+
+            pos.y++;
+            index = hallwayIndex(floor, wall, pos);
+            if (index != -1) { wall.SetTile(pos, hallwayEdgeTiles[index]); }
+
+            pos.x--;
+            index = hallwayIndex(floor, wall, pos);
+            if (index != -1) { wall.SetTile(pos, hallwayEdgeTiles[index]); }
+
+            pos.x--;
+            index = hallwayIndex(floor, wall, pos);
+            if (index != -1) { wall.SetTile(pos, hallwayEdgeTiles[index]); }
+
+            pos.x--;
+            index = hallwayIndex(floor, wall, pos);
+            if (index != -1) { wall.SetTile(pos, hallwayEdgeTiles[index]); }
+
+            pos.y--;
+            index = hallwayIndex(floor, wall, pos);
+            if (index != -1) { wall.SetTile(pos, hallwayEdgeTiles[index]); }
+
+            pos.y--;
+            index = hallwayIndex(floor, wall, pos);
+            if (index != -1) { wall.SetTile(pos, hallwayEdgeTiles[index]); }
+
+        }
+    }
+
+    public int hallwayIndex(Tilemap floor, Tilemap wall, Vector3Int pos)
+    {
+        var test = floor.GetTile(pos);
+
+        if (test)
+        {
+            return -1;
+        }
+
+        if (wall.HasTile(pos))
+        {
+            UnityEngine.Debug.Log("Test");
+            return -1;
+        }
+
+
+        Vector3Int temp = pos;
+        temp.x++;
+        test = floor.GetTile(temp);
+        if (test == floorTiles[0]) return 0;
+
+        temp = pos;
+        temp.y--;
+        test = floor.GetTile(temp);
+        if (test == floorTiles[0]) return 2;
+
+        temp = pos;
+        temp.x--;
+        test = floor.GetTile(temp);
+        if (test == floorTiles[0]) return 4;
+
+        temp = pos;
+        temp.y++;
+        test = floor.GetTile(temp);
+        if (test == floorTiles[0]) return 6;
+
+
+        temp = pos;
+        temp.y--;
+        temp.x++;
+        test = floor.GetTile(temp);
+        if (test == floorTiles[0]) return 1;
+
+        temp = pos;
+        temp.x--;
+        temp.y--;
+        test = floor.GetTile(temp);
+        if (test == floorTiles[0]) return 3;
+
+        temp = pos;
+        temp.x--;
+        temp.y++;
+        test = floor.GetTile(temp);
+        if (test == floorTiles[0]) return 5;
+
+        temp = pos;
+        temp.y++;
+        temp.x++;
+        test = floor.GetTile(temp);
+        if (test == floorTiles[0]) return 7;
+
+        return -1;
+    }
+
+
+
+
+
 }
 
