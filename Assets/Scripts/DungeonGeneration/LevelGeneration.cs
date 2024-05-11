@@ -505,7 +505,7 @@ public class LevelGeneration : MonoBehaviour
 
             }
 
-            //Destroy(rooms[i]);
+            Destroy(rooms[i]);
         }
 
         for (int i = 0; i < pathCubes.Count; i++)
@@ -575,7 +575,7 @@ public class LevelGeneration : MonoBehaviour
             pos.y--;
             index = hallwayIndex(floor, wall, pos);
             if (index != -1) { wall.SetTile(pos, hallwayEdgeTiles[index]); }
-
+            Destroy(pathCubes[i]);
         }
     }
 
